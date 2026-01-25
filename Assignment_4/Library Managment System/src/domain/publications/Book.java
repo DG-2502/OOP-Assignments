@@ -1,4 +1,4 @@
-package domain;
+package domain.publications;
 
 public class Book extends Publication {
     private final int pages;
@@ -10,5 +10,10 @@ public class Book extends Publication {
 
     public int getPages() {
         return pages;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " " + pages;
     }
 }

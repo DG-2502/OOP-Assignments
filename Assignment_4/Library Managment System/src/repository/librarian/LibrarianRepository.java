@@ -1,10 +1,12 @@
-package repository.librarian_repository;
+package repository.librarian;
 
 import domain.librarian.Librarian;
+import domain.librarian.NoLibrarian;
+import repository.Repository;
 
 import java.util.ArrayList;
 
-public class LibrarianRepository {
+public class LibrarianRepository implements Repository<Librarian> {
     private final ArrayList<Librarian> librarians = new ArrayList<>(){
     };
 
@@ -12,7 +14,16 @@ public class LibrarianRepository {
         librarians.add(librarian);
     }
 
+    @Override
+    public void remove(int i) {
+        librarians.remove(i);
+    }
+
     public Librarian getById(int id) {
-        return librarians.stream().filter(s -> s.getId() == id).findFirst().get();
+        try {
+            return librarians.stream().filter(s -> s.getId() == id).findFirst().get();
+        } catch (Exception e) {
+            return new NoLibrarian(id);
+        }
     }
 }

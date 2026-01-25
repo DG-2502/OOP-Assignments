@@ -1,4 +1,4 @@
-package domain;
+package domain.publications;
 
 public class Disc extends Publication{
     public final String narrator;

@@ -1,4 +1,4 @@
-package domain;
+package domain.publications;
 
 public abstract class Publication {
     private int year;
@@ -11,9 +11,9 @@ public abstract class Publication {
         this.title = title;
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return title;
-    };
+    }
 
     public int getYear() {
         return year;
@@ -21,5 +21,10 @@ public abstract class Publication {
 
     public String getAuthor() {
         return author;
+    }
+
+    @Override
+    public String toString() {
+        return author + " " + year + " " + title;
     }
 }

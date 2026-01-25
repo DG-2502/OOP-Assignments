@@ -1,8 +1,7 @@
-package repository.publications;
+package repository;
 
 
-public interface PublicationRepository<T> {
-    void add(T publication);
-    void print();
-    int size();
+public interface Repository<T> {
+    void add(T t);
+    void remove(int i);
 }
