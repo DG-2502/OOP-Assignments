@@ -1,19 +1,19 @@
-package repository.publications;
+package repository;
 
-import repository.Repository;
+import domain.publications.Publication;
 
 import java.util.ArrayList;
 
-public class PublicationRepository<T> implements Repository<T> {
-    private final ArrayList<T> publications = new ArrayList<>();
+public class PubRepository implements Repository<Publication> {
+    private final ArrayList<Publication> publications = new ArrayList<>();
 
     @Override
-    public void add(T t) {
-        publications.add(t);
+    public void add(Publication pub) {
+        publications.add(pub);
     }
 
     public void print(){
-        for (T publication : publications){
+        for (Publication publication : publications){
             System.out.print(publication);
             System.out.println();
         }

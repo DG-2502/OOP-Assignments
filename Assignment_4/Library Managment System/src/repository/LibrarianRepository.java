@@ -1,8 +1,7 @@
-package repository.librarian;
+package repository;
 
-import domain.librarian.Librarian;
-import domain.librarian.NoLibrarian;
-import repository.Repository;
+import domain.human.Librarian;
+import domain.human.NoLibrarian;
 
 import java.util.ArrayList;
 

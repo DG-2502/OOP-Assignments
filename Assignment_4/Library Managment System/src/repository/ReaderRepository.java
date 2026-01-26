@@ -1,7 +1,6 @@
-package repository.reader;
+package repository;
 
-import domain.reader.Reader;
-import repository.Repository;
+import domain.human.Reader;
 
 import java.util.ArrayList;
 

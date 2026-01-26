@@ -1,9 +1,15 @@
 package domain.publications;
 
 public abstract class Publication {
-    private int year;
-    private String author;
-    private String title;
+    private final int year;
+    private final String author;
+    private final String title;
+
+    public Publication() {
+        this.year = 0;
+        this.author = "None";
+        this.title = "None";
+    }
 
     public Publication(int year, String author, String title) {
         this.year = year;

@@ -1,4 +1,4 @@
-package domain.librarian;
+package domain.human;
 
 
 public class NoLibrarian extends Librarian {
