@@ -14,8 +14,7 @@ public class PublicationRepository implements Repository<Publication> {
 
     public void print(){
         for (Publication publication : publications){
-            System.out.print(publication);
-            System.out.println();
+            System.out.println(publication);
         }
     }
     public int size(){
@@ -25,5 +24,26 @@ public class PublicationRepository implements Repository<Publication> {
     @Override
     public void remove(int i) {
         publications.remove(i);
+    }
+
+    @Override
+    public boolean has(Publication publication) {
+        return publications.contains(publication);
+    }
+
+    public void remove(Publication publication){
+        publications.remove(publication);
+    }
+
+    @Override
+    public String toString() {
+        if (publications.isEmpty()){
+            return "    No publications";
+        }
+        String string = "    ";
+        for (Publication publication : publications){
+            string = string.concat("    " + publication.toString());
+        }
+        return string;
     }
 }

@@ -17,7 +17,19 @@ public class IssueRepository implements Repository<Issue> {
         issues.remove(i);
     }
 
+    @Override
+    public boolean has(Issue issue) {
+        return issues.contains(issue);
+    }
+
     public Issue getById(int i){
         return issues.get(i);
+    }
+
+    @Override
+    public void print() {
+        for (Issue issue : issues){
+            System.out.println(issue);
+        }
     }
 }

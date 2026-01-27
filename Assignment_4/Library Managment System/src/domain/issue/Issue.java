@@ -5,22 +5,24 @@ import domain.publications.Publication;
 import domain.human.Reader;
 
 public class Issue {
-    private final Librarian granted;
     private final Reader receiver;
     private final Publication received;
 
-    public Issue(Librarian granted, Reader receiver, Publication received) {
-        this.granted = granted;
+    public Issue(Reader receiver, Publication received) {
         this.receiver = receiver;
         this.received = received;
     }
 
     @Override
     public String toString() {
-        return granted + "\n" + receiver + "\n" + received;
+        return receiver + "\n" + received;
     }
 
     public Publication getReceived() {
         return received;
+    }
+
+    public Reader getReceiver() {
+        return receiver;
     }
 }
