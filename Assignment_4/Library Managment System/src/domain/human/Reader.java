@@ -29,4 +29,7 @@ public class Reader extends Human{
     public void addPublication(Publication publication){
         publicationRepository.add(publication);
     }
+    public void returnPublication(Publication publication){
+        publicationRepository.remove(publication);
+    }
 }

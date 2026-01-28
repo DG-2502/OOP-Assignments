@@ -1,12 +1,16 @@
 import domain.publications.*;
 import domain.human.Librarian;
 import domain.human.Reader;
+import repository.LibraryRepository;
 import repository.PublicationRepository;
 import service.LibrarianService;
 
 void main() {
     System.out.println("---Data Management System---");
-    LibrarianService firstLibrarian = new LibrarianService(new Librarian());
+    LibraryRepository library = new LibraryRepository();
+    Librarian librarian = new Librarian();
+    library.addLibrarian(librarian);
+    LibrarianService firstLibrarian = new LibrarianService(librarian, library);
 
     Book firstBook = new Book(2002, "Book", "Book", 200);
     firstLibrarian.registerPublication(firstBook);
@@ -20,9 +24,11 @@ void main() {
     firstLibrarian.registerReader(firstReader);
     firstLibrarian.registerReader(new Reader());
 
-    firstLibrarian.librarian().print();
+    firstLibrarian.library().print();
 
     firstLibrarian.issuePublication(firstReader, firstBook);
 
-    firstLibrarian.librarian().print();
+    firstLibrarian.library().print();
+    firstLibrarian.returnPublication(firstReader, firstBook);
+    firstLibrarian.library().print();
 }
