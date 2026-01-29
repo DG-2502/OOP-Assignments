@@ -31,4 +31,7 @@ void main() {
     firstLibrarian.library().print();
     firstLibrarian.returnPublication(firstReader, firstBook);
     firstLibrarian.library().print();
+
+    firstLibrarian.issuePublication("Mike", "sally", "Book");
+    firstLibrarian.issuePublication("mike", "bally", "Book");
 }

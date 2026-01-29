@@ -13,11 +13,11 @@ public abstract class Publication {
         this.amount = 1;
     }
 
-    public Publication(int year, String author, String title, int amount) {
+    public Publication(int year, String author, String title) {
         this.year = year;
         this.author = author;
         this.title = title;
-        this.amount = amount;
+        this.amount = 1;
     }
 
     public String getTitle() {

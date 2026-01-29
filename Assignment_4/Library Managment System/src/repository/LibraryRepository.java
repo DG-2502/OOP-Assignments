@@ -33,15 +33,15 @@ public class LibraryRepository {
         if (!publicationRepository.has(publication)) {
             this.publicationRepository.add(publication);
         }
-        else {
-            this.publicationRepository.
-        }
     }
 
     public void addReader(Reader reader){
         if (!readerRepository.has(reader)) {
             this.readerRepository.add(reader);
         }
+    }
+    public void addReader(String name, String last){
+        this.readerRepository.add(name, last);
     }
 
     public void addIssue(Issue issue){
@@ -66,5 +66,20 @@ public class LibraryRepository {
     }
     public void removePublication(Publication publication){
         publicationRepository.remove(publication);
+    }
+    public Reader getReader(String name, String last){
+        try {
+//            return readerRepository.getReaders().stream().filter(s -> s.getFirstName().equalsIgnoreCase(name)).findFirst().get();
+            return readerRepository.getReaders().stream().filter(s -> s.getFirstName().equalsIgnoreCase(name) && s.getLastName().equalsIgnoreCase(last)).findFirst().get();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    public Publication getPublication(String title){
+        try {
+            return publicationRepository.getPublications().stream().filter(s -> s.getTitle().equalsIgnoreCase(title)).findFirst().get();
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

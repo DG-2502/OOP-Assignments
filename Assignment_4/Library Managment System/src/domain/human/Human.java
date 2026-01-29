@@ -18,4 +18,12 @@ abstract public class Human {
     public String toString() {
         return firstName + " " + lastName;
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
 }

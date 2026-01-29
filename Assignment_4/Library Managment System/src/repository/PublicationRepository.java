@@ -46,4 +46,8 @@ public class PublicationRepository implements Repository<Publication> {
         }
         return string;
     }
+
+    public ArrayList<Publication> getPublications() {
+        return publications;
+    }
 }

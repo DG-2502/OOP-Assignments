@@ -17,6 +17,11 @@ public class Reader extends Human{
         this.publicationRepository = takenPublications;
     }
 
+    public Reader(String firstName, String lastName){
+        super(firstName, lastName);;
+        this.publicationRepository = new PublicationRepository();
+    }
+
     @Override
     public String toString() {
         return super.toString() + "\n    Has these publications:\n" + publicationRepository.toString();
@@ -32,4 +37,5 @@ public class Reader extends Human{
     public void returnPublication(Publication publication){
         publicationRepository.remove(publication);
     }
+
 }

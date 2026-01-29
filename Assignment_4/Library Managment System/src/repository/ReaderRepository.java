@@ -12,6 +12,10 @@ public class ReaderRepository implements Repository<Reader> {
         readers.add(reader);
     }
 
+    public void add(String name, String last){
+        readers.add(new Reader(name, last));
+    }
+
     @Override
     public void remove(int i) {
         readers.remove(i);
@@ -27,5 +31,9 @@ public class ReaderRepository implements Repository<Reader> {
         for (Reader reader : readers){
             System.out.println(reader);
         }
+    }
+
+    public ArrayList<Reader> getReaders() {
+        return readers;
     }
 }

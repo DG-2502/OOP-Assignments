@@ -15,6 +15,10 @@ public record LibrarianService(Librarian librarian, LibraryRepository library) {
         library.addReader(reader);
     }
 
+    public void registerReader(String name, String last){
+        library.addReader(name, last);
+    }
+
     public void issuePublication(Reader reader, Publication publication){
         if (!library.hasReader(reader)) {
             System.out.println("No such reader registered!");
@@ -30,6 +34,27 @@ public record LibrarianService(Librarian librarian, LibraryRepository library) {
             library.removePublication(publication);
             reader.addPublication(publication);
             library.addIssue(new Issue(reader, publication));
+        }
+    }
+
+    public void issuePublication(String firstname, String lastname, String publication){
+        Reader reader = library.getReader(firstname, lastname);
+        Publication pub = library.getPublication(publication);
+        if (reader == null){
+            System.out.println("No such reader registered!");
+            System.out.println("Registering Reader: " + firstname + " " + lastname);
+            registerReader(firstname, lastname);
+            reader = library.getReader(firstname, lastname);
+        }
+        if (pub == null){
+            System.out.println("No such publication: " + publication);
+            System.out.println("Could not issue the publication to the reader");
+        }
+        else {
+            System.out.println("***Issue the publication to the reader***");
+            library.removePublication(pub);
+            reader.addPublication(pub);
+            library.addIssue(new Issue(reader, pub));
         }
     }
 

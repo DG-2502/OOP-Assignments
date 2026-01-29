@@ -27,8 +27,7 @@ public class LibrarianRepository implements Repository<Librarian> {
         try {
             return librarians.stream().filter(s -> s.getId() == id).findFirst().get();
         } catch (Exception e) {
-            return new NoLibrarian(id);
-        }
+            return new NoLibrarian(id);        }
     }
 
     @Override
