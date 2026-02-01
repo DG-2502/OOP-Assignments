@@ -6,6 +6,11 @@ public class Magazine extends Publication{
     }
 
     public Magazine() {
-        super();
+        super("Magazine", "Magazine");
+    }
+
+    @Override
+    public Publication clone() {
+        return new Magazine(getYear(), getAuthor(), getTitle());
     }
 }

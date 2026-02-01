@@ -4,6 +4,7 @@ public class Disc extends Publication{
     public final String narrator;
 
     public Disc() {
+        super("Disc", "Disc");
         this.narrator = "None";
     }
 
@@ -19,5 +20,10 @@ public class Disc extends Publication{
     @Override
     public String toString() {
         return super.toString() + " " + narrator;
+    }
+
+    @Override
+    public Publication clone() {
+        return new Disc(getYear(), getAuthor(), getTitle(), this.narrator);
     }
 }

@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e7d2130c-0186-44b1-a8c5-848b69310097" name="Changes" comment="" />
+    <list default="true" id="33077e8c-f9c2-46ca-9ded-8f488cd3c3d2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Assignment_3/Task_2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Assignment_3/Task_2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Assignment_3/Task_7/src/factory/ProgrammingCourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Assignment_3/Task_7/src/factory/ProgrammingCourse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/human/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/human/Reader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/publications/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/publications/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/publications/Disc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/publications/Disc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/publications/Magazine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/publications/Magazine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/publications/Publication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/publications/Publication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/LibraryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/LibraryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/PublicationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/PublicationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repository/ReaderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/ReaderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/LibrarianService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/LibrarianService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -11,22 +25,23 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 8
+  "associatedIndex": 2
 }]]></component>
-  <component name="ProjectId" id="38zIkONt7N9FZrKtKNRTzceuFox" />
+  <component name="ProjectId" id="3950TYnzI2hFFT5j7m0CzjBlw9t" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Денис/Desktop/assignments/OOP/Assignment_4/Library Managment System",
+    "last_opened_file_path": "C:/Users/Денис/Desktop/assignments/OOP/Assignment_4/Library Management System",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -40,16 +55,27 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e7d2130c-0186-44b1-a8c5-848b69310097" name="Changes" comment="" />
-      <created>1769796115366</created>
+      <changelist id="33077e8c-f9c2-46ca-9ded-8f488cd3c3d2" name="Changes" comment="" />
+      <created>1769970632571</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1769796115366</updated>
-      <workItem from="1769796116512" duration="117000" />
+      <updated>1769970632571</updated>
+      <workItem from="1769970633632" duration="9426000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

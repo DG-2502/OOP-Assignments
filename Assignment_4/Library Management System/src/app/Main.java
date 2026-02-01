@@ -14,9 +14,6 @@ void main() {
 
     Book firstBook = new Book(2002, "Book", "Book", 200);
     firstLibrarian.registerPublication(firstBook);
-//    firstLibrarian.registerPublication(new Book());
-//    firstLibrarian.registerPublication(new Book());
-//    firstLibrarian.registerPublication(new Magazine());
     firstLibrarian.registerPublication(new Magazine());
     firstLibrarian.registerPublication(new Disc());
 
@@ -26,10 +23,10 @@ void main() {
 
     firstLibrarian.library().print();
 
-    firstLibrarian.issuePublication(firstReader, firstBook);
-
+    firstLibrarian.issuePublication("Reader", "Reader", "Book");
     firstLibrarian.library().print();
-    firstLibrarian.returnPublication(firstReader, firstBook);
+
+    firstLibrarian.returnPublication("Reader", "Reader", "Book");
     firstLibrarian.library().print();
 
     firstLibrarian.issuePublication("Mike", "sally", "Book");

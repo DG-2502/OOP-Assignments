@@ -36,4 +36,11 @@ public class ReaderRepository implements Repository<Reader> {
     public ArrayList<Reader> getReaders() {
         return readers;
     }
+    public Reader getReader(String name, String last){
+        try {
+            return readers.stream().filter(s -> s.getFirstName().equalsIgnoreCase(name) && s.getLastName().equalsIgnoreCase(last)).findFirst().get();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

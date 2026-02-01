@@ -4,7 +4,7 @@ public class Book extends Publication {
     private final int pages;
 
     public Book() {
-        super();
+        super("Book", "Book");
         this.pages = 100;
     }
 
@@ -20,5 +20,11 @@ public class Book extends Publication {
     @Override
     public String toString() {
         return super.toString() + " " + pages;
+    }
+
+    @Override
+    public Publication clone() {
+        return new Book(getYear(), getAuthor(), getTitle(), this.pages);
+//        return new Book();
     }
 }

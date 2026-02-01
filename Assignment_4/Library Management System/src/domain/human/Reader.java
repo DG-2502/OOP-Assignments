@@ -4,7 +4,6 @@ import domain.publications.Publication;
 import repository.PublicationRepository;
 
 public class Reader extends Human{
-
     private final PublicationRepository publicationRepository;
 
     public Reader() {
@@ -34,8 +33,8 @@ public class Reader extends Human{
     public void addPublication(Publication publication){
         publicationRepository.add(publication);
     }
-    public void returnPublication(Publication publication){
-        publicationRepository.remove(publication);
-    }
 
+    public PublicationRepository getPublications() {
+        return publicationRepository;
+    }
 }

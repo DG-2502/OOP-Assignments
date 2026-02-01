@@ -10,6 +10,20 @@ public class PublicationRepository implements Repository<Publication> {
     @Override
     public void add(Publication pub) {
         publications.add(pub);
+        if (!has(pub)) {
+            this.publications.add(pub);
+        } else {
+            getPublication(pub.getTitle()).increase();
+        }
+    }
+
+    public void add(String title) {
+        if (has(title)){
+            getPublication(title).increase();
+        }
+        else {
+            System.out.println("There is no publication registered with such title: " + title);
+        }
     }
 
     public void print(){
@@ -28,11 +42,22 @@ public class PublicationRepository implements Repository<Publication> {
 
     @Override
     public boolean has(Publication publication) {
-        return publications.contains(publication);
+        return publications.stream().anyMatch(publication1 -> publication1.compare(publication));
     }
 
-    public void remove(Publication publication){
-        publications.remove(publication);
+    public boolean has(String title){
+        return publications.stream().anyMatch(publication -> publication.getTitle().equals(title));
+    }
+
+    public boolean hasCopy(String title) {
+        if (!has(title)) {return false;}
+        else {
+            return getPublication(title).getAmount() != 0;
+        }
+    }
+
+    public boolean remove(String title){
+        return getPublication(title).decrease();
     }
 
     @Override
@@ -49,5 +74,17 @@ public class PublicationRepository implements Repository<Publication> {
 
     public ArrayList<Publication> getPublications() {
         return publications;
+    }
+
+    public Publication getPublication(String title) {
+       return publications.stream().filter(publication -> publication.getTitle().equals(title)).findFirst().get();
+    }
+
+    public Publication clonePublication(String title){
+        return getPublication(title).clone();
+    }
+
+    public void delete(String title){
+        publications.remove(getPublication(title));
     }
 }
