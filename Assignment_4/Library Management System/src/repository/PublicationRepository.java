@@ -3,6 +3,7 @@ package repository;
 import domain.publications.Publication;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class PublicationRepository implements Repository<Publication> {
     private final ArrayList<Publication> publications = new ArrayList<>();
@@ -13,13 +14,13 @@ public class PublicationRepository implements Repository<Publication> {
         if (!has(pub)) {
             this.publications.add(pub);
         } else {
-            getPublication(pub.getTitle()).increase();
+            getByID(pub.getTitle()).increase();
         }
     }
 
     public void add(String title) {
         if (has(title)){
-            getPublication(title).increase();
+            getByID(title).increase();
         }
         else {
             System.out.println("There is no publication registered with such title: " + title);
@@ -28,7 +29,7 @@ public class PublicationRepository implements Repository<Publication> {
 
     public void print(){
         for (Publication publication : publications){
-            System.out.println(publication);
+            System.out.println(publications.indexOf(publication) + " " +  publication);
         }
     }
     public int size(){
@@ -52,12 +53,12 @@ public class PublicationRepository implements Repository<Publication> {
     public boolean hasCopy(String title) {
         if (!has(title)) {return false;}
         else {
-            return getPublication(title).getAmount() != 0;
+            return getByID(title).getAmount() != 0;
         }
     }
 
     public boolean remove(String title){
-        return getPublication(title).decrease();
+        return getByID(title).decrease();
     }
 
     @Override
@@ -76,15 +77,29 @@ public class PublicationRepository implements Repository<Publication> {
         return publications;
     }
 
-    public Publication getPublication(String title) {
+    public Publication getByID(String title) {
        return publications.stream().filter(publication -> publication.getTitle().equals(title)).findFirst().get();
     }
 
     public Publication clonePublication(String title){
-        return getPublication(title).clone();
+        return getByID(title).clone();
     }
 
     public void delete(String title){
-        publications.remove(getPublication(title));
+        publications.remove(getByID(title));
+    }
+
+    @Override
+    public Publication getByID(int id){
+        try {
+            return publications.get(id);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public ArrayList<Publication> find(String title) {
+        return (ArrayList<Publication>) publications.stream().filter(publication -> publication.getTitle().equals(title)).collect(Collectors.toList());
     }
 }

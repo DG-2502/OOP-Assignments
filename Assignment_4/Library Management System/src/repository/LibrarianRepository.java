@@ -5,6 +5,7 @@ import domain.human.NoLibrarian;
 
 import java.util.ArrayList;
 
+
 public class LibrarianRepository implements Repository<Librarian> {
     private final ArrayList<Librarian> librarians = new ArrayList<>(){
     };
@@ -33,5 +34,15 @@ public class LibrarianRepository implements Repository<Librarian> {
     @Override
     public void print() {
 
+    }
+
+    @Override
+    public Librarian getByID(int id) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Librarian> find(String string) {
+        return null;
     }
 }

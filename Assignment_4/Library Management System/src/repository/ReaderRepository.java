@@ -1,8 +1,11 @@
 package repository;
 
 import domain.human.Reader;
+import domain.publications.Publication;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 
 public class ReaderRepository implements Repository<Reader> {
     private final ArrayList<Reader> readers = new ArrayList<>();
@@ -29,8 +32,22 @@ public class ReaderRepository implements Repository<Reader> {
     @Override
     public void print() {
         for (Reader reader : readers){
-            System.out.println(reader);
+            System.out.println(readers.indexOf(reader) + " " + reader);
         }
+    }
+
+    @Override
+    public Reader getByID(int id) {
+        try {
+            return readers.get(id);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public ArrayList<Reader> find(String name) {
+        return (ArrayList<Reader>) readers.stream().filter(reader -> reader.getFirstName().equals(name)).collect(Collectors.toList());
     }
 
     public ArrayList<Reader> getReaders() {

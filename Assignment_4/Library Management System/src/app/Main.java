@@ -3,6 +3,7 @@ import domain.human.Librarian;
 import domain.human.Reader;
 import repository.LibraryRepository;
 import repository.PublicationRepository;
+import service.LMSService;
 import service.LibrarianService;
 
 void main() {
@@ -30,5 +31,12 @@ void main() {
     firstLibrarian.library().print();
 
     firstLibrarian.issuePublication("Mike", "sally", "Book");
-    firstLibrarian.issuePublication("mike", "bally", "Book");
+    firstLibrarian.issuePublication("Mike", "bally", "Book");
+
+    System.out.println(library.getPublications().getByID(0));
+    System.out.println(library.getPublications().getByID(1));
+    System.out.println(library.getPublications().getByID(2));
+
+    LMSService lmsService = new LMSService(firstLibrarian.library().getLibrarians(), firstLibrarian.library().getReaders(), firstLibrarian.library().getPublications(), firstLibrarian.library().getIssues());
+    lmsService.run();
 }

@@ -11,13 +11,6 @@ public class LibraryRepository {
     private final ReaderRepository readerRepository;
     private final IssueRepository issueRepository;
 
-    public LibraryRepository(LibrarianRepository librarianRepository, PublicationRepository publicationRepository, ReaderRepository readerRepository, IssueRepository issueRepository) {
-        this.librarianRepository = librarianRepository;
-        this.publicationRepository = publicationRepository;
-        this.readerRepository = readerRepository;
-        this.issueRepository = issueRepository;
-    }
-
     public LibraryRepository() {
         this.librarianRepository = new LibrarianRepository();
         this.publicationRepository = new PublicationRepository();
@@ -43,14 +36,6 @@ public class LibraryRepository {
         issueRepository.add(issue);
     }
 
-    public boolean hasPublication(Publication publication) {
-        return publicationRepository.has(publication);
-    }
-
-    public boolean hasReader(Reader reader) {
-        return readerRepository.has(reader);
-    }
-
     public void print() {
         System.out.println("**Publications**");
         publicationRepository.print();
@@ -62,21 +47,9 @@ public class LibraryRepository {
         librarianRepository.print();
     }
 
-    public void decreasePublication(String title) {
-        getPublication(title).decrease();
-    }
-
     public Reader getReader(String name, String last) {
         try {
             return readerRepository.getReaders().stream().filter(s -> s.getFirstName().equalsIgnoreCase(name) && s.getLastName().equalsIgnoreCase(last)).findFirst().get();
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    public Publication getPublication(String title) {
-        try {
-            return publicationRepository.getPublications().stream().filter(s -> s.getTitle().equalsIgnoreCase(title)).findFirst().get();
         } catch (Exception e) {
             return null;
         }
@@ -93,5 +66,13 @@ public class LibraryRepository {
 
     public ReaderRepository getReaders() {
         return readerRepository;
+    }
+
+    public LibrarianRepository getLibrarians() {
+        return librarianRepository;
+    }
+
+    public IssueRepository getIssues() {
+        return issueRepository;
     }
 }

@@ -41,7 +41,7 @@ public record LibrarianService(Librarian librarian, LibraryRepository library) {
             library.getPublications().remove(title);
             reader.addPublication(library().getPublications().clonePublication(title));
             reader.getPublications().remove(title);
-            library.addIssue(new Issue(reader, library().getPublications().getPublication(title)));
+            library.addIssue(new Issue(reader, library().getPublications().getByID(title)));
         }
     }
 

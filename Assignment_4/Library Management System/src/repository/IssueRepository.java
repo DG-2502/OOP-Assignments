@@ -32,4 +32,14 @@ public class IssueRepository implements Repository<Issue> {
             System.out.println(issue);
         }
     }
+
+    @Override
+    public Issue getByID(int id) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Issue> find(String string) {
+        return null;
+    }
 }
