@@ -2,8 +2,10 @@ package repository;
 
 import domain.human.Librarian;
 import domain.human.NoLibrarian;
+import domain.human.Reader;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 
 public class LibrarianRepository implements Repository<Librarian> {
@@ -42,7 +44,7 @@ public class LibrarianRepository implements Repository<Librarian> {
     }
 
     @Override
-    public ArrayList<Librarian> find(String string) {
-        return null;
+    public ArrayList<Librarian> find(String name) {
+        return (ArrayList<Librarian>) librarians.stream().filter(librarian -> librarian.getFirstName().equals(name)).collect(Collectors.toList());
     }
 }

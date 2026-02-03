@@ -27,6 +27,15 @@ public class PublicationRepository implements Repository<Publication> {
         }
     }
 
+    public void addNew(Publication publication){
+        if (has(publication)) {
+            publication.increase();
+        }
+        else {
+            publications.add(publication);
+        }
+    }
+
     public void print(){
         for (Publication publication : publications){
             System.out.println(publications.indexOf(publication) + " " +  publication);
@@ -55,6 +64,10 @@ public class PublicationRepository implements Repository<Publication> {
         else {
             return getByID(title).getAmount() != 0;
         }
+    }
+
+    public boolean hasCopy(Publication publication){
+        return  publication.getAmount() != 0;
     }
 
     public boolean remove(String title){

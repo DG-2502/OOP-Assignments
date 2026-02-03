@@ -5,6 +5,7 @@ import repository.LibraryRepository;
 import repository.PublicationRepository;
 import service.LMSService;
 import service.LibrarianService;
+import service.ReaderService;
 
 void main() {
     System.out.println("---Data Management System---");
@@ -31,11 +32,17 @@ void main() {
     firstLibrarian.library().print();
 
     firstLibrarian.issuePublication("Mike", "sally", "Book");
-    firstLibrarian.issuePublication("Mike", "bally", "Book");
+    firstLibrarian.issuePublication("mike", "bally", "Book");
 
     System.out.println(library.getPublications().getByID(0));
     System.out.println(library.getPublications().getByID(1));
     System.out.println(library.getPublications().getByID(2));
+
+    Reader reader = new Reader("NewReader", "NewReader", new PublicationRepository());
+    firstLibrarian.registerReader(reader);
+    ReaderService readerService = new ReaderService(reader, library);
+    readerService.takePublication(library.getPublications().getByID(0));
+    library.print();
 
     LMSService lmsService = new LMSService(firstLibrarian.library().getLibrarians(), firstLibrarian.library().getReaders(), firstLibrarian.library().getPublications(), firstLibrarian.library().getIssues());
     lmsService.run();

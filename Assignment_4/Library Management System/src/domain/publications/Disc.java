@@ -13,10 +13,6 @@ public class Disc extends Publication{
         this.narrator = narrator;
     }
 
-    public String getNarrator() {
-        return narrator;
-    }
-
     @Override
     public String toString() {
         return super.toString() + " " + narrator;

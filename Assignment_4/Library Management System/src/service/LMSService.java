@@ -1,5 +1,6 @@
 package service;
 
+import domain.human.Human;
 import domain.human.Librarian;
 import domain.human.Reader;
 import domain.issue.Issue;
@@ -12,8 +13,10 @@ import java.util.Scanner;
 public class LMSService {
     private int displayOption = 0;
     private int helpOption = 1;
+    private int exitOption = 0;
     private Reader chosenReader;
     private Publication chosenPub;
+    private Human user;
     private final Repository<Librarian> librarianRepository;
     private final Repository<Reader> readerRepository;
     private final Repository<Publication> publicationRepository;
@@ -39,6 +42,7 @@ public class LMSService {
         while (true) {
             readInput();
             executeCommands();
+            System.out.println(user.getClass());
         }
     }
 
@@ -98,6 +102,9 @@ public class LMSService {
         } else if (command.equals("help")) {
             helpOption = 1;
             return true;
+        } else if (command.equals("exit")) {
+            exitOption = 1;
+            return true;
         } else if (command.equals("cp")) {
             chosenPub = publicationRepository.getByID(index);
             if (chosenPub == null) {
@@ -123,14 +130,14 @@ public class LMSService {
         if (command.equals("cp")) {
             ArrayList<Publication> publications = publicationRepository.find(option);
             if (publications.isEmpty()) {
-                System.out.println("Could not find a publication with such title: " + option);
+                System.out.println("Could not find a publication with such a title: " + option);
                 return false;
             } else if (publications.size() == 1) {
                 chosenPub = publications.getFirst();
                 System.out.println("Chosen publication: " + chosenPub);
                 return true;
             } else {
-                System.out.println("Found several publications with such title: " + option);
+                System.out.println("Found several publications with such a title: " + option);
                 for (Publication publication : publications) {
                     System.out.println(publications.indexOf(publication) + " " + publication);
                 }
@@ -141,14 +148,14 @@ public class LMSService {
         } else if (command.equals("cr")) {
             ArrayList<Reader> readers = readerRepository.find(option);
             if (readers.isEmpty()) {
-                System.out.println("Could not find a reader with such name: " + option);
+                System.out.println("Could not find a reader with such a name: " + option);
                 return false;
             } else if (readers.size() == 1) {
                 chosenReader = readers.getFirst();
                 System.out.println("Chosen reader: " + chosenReader);
                 return true;
             } else {
-                System.out.println("Found several readers with such title: " + option);
+                System.out.println("Found several readers with such a name: " + option);
                 for (Reader reader : readers) {
                     System.out.println(readers.indexOf(reader) + " " + reader);
                 }
@@ -161,6 +168,16 @@ public class LMSService {
     }
 
     private void executeCommands() {
+        switch (exitOption) {
+            case 0:
+                login();
+                break;
+            case 1:
+                System.out.println("-Closing the system for the user: " + user.getFirstName() + "-");
+                user = null;
+                exitOption = 0;
+                break;
+        }
         switch (helpOption) {
             case 1:
                 System.out.println("-Available commands-");
@@ -198,5 +215,37 @@ public class LMSService {
                 break;
         }
         displayOption = 0;
+    }
+
+    private void login(){
+        if (user == null) {
+            System.out.println("-Please log into the system-");
+            Scanner scanner = new Scanner(System.in);
+            while (true) {
+                String request = scanner.nextLine().trim();
+                if (request.matches("[a-zA-Z]+")) {
+                    ArrayList<Human> humans = new ArrayList<>();
+                    humans.addAll(readerRepository.find(request));
+                    humans.addAll(librarianRepository.find(request));
+                    if (humans.isEmpty()) {
+                        System.out.println("Could not find a user with such a name: " + request);
+                    } else if (humans.size() == 1) {
+                        user = humans.getFirst();
+                        System.out.println("Logged in as: " + user);
+                        break;
+                    } else {
+                        System.out.println("Found several readers with such a name: " + request);
+                        for (Human human : humans) {
+                            System.out.println(humans.indexOf(human) + " " + human);
+                        }
+                        user = humans.get(readIndex(humans.size() - 1));
+                        System.out.println("Logged in as: " + user);
+                        break;
+                    }
+                } else {
+                    System.out.println("Please enter the name of the user!");
+                }
+            }
+        }
     }
 }
