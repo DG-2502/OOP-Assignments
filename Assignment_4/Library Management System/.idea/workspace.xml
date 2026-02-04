@@ -2,17 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33077e8c-f9c2-46ca-9ded-8f488cd3c3d2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/service/ReaderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/UserServiceFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Assignment_3/Task_2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Assignment_3/Task_2/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Assignment_3/Task_7/src/factory/ProgrammingCourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Assignment_3/Task_7/src/factory/ProgrammingCourse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/human/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/human/Reader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/publications/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/publications/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/publications/Disc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/publications/Disc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repository/LibrarianRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/LibrarianRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repository/PublicationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/PublicationRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/LMSService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/LMSService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/ReaderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/ReaderService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +21,7 @@
       <list>
         <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -82,6 +80,7 @@
       <workItem from="1769970633632" duration="9426000" />
       <workItem from="1770045396137" duration="11935000" />
       <workItem from="1770138437428" duration="6207000" />
+      <workItem from="1770181305013" duration="11723000" />
     </task>
     <servers />
   </component>

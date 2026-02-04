@@ -217,7 +217,7 @@ public class LMSService {
         displayOption = 0;
     }
 
-    private void login(){
+    private void login() {
         if (user == null) {
             System.out.println("-Please log into the system-");
             Scanner scanner = new Scanner(System.in);

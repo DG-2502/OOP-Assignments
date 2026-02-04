@@ -3,9 +3,9 @@ import domain.human.Librarian;
 import domain.human.Reader;
 import repository.LibraryRepository;
 import repository.PublicationRepository;
-import service.LMSService;
 import service.LibrarianService;
 import service.ReaderService;
+import service.UserServiceFactory;
 
 void main() {
     System.out.println("---Data Management System---");
@@ -40,10 +40,15 @@ void main() {
 
     Reader reader = new Reader("NewReader", "NewReader", new PublicationRepository());
     firstLibrarian.registerReader(reader);
-    ReaderService readerService = new ReaderService(reader, library);
-    readerService.takePublication(library.getPublications().getByID(0));
-    library.print();
+    UserServiceFactory readerService = new ReaderService(reader, library);
+//    readerService.takePublication(library.getPublications().getByID(0));
 
-    LMSService lmsService = new LMSService(firstLibrarian.library().getLibrarians(), firstLibrarian.library().getReaders(), firstLibrarian.library().getPublications(), firstLibrarian.library().getIssues());
-    lmsService.run();
+    while (!readerService.getShouldExit()) {
+        readerService.readInput();
+        readerService.executeCommands();
+//        library.print();
+    }
+
+//    LMSService lmsService = new LMSService(firstLibrarian.library().getLibrarians(), firstLibrarian.library().getReaders(), firstLibrarian.library().getPublications(), firstLibrarian.library().getIssues());
+//    lmsService.run();
 }
