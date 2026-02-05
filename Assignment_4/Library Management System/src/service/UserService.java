@@ -4,7 +4,7 @@ import domain.publications.Publication;
 
 import java.util.Scanner;
 
-public abstract class UserService implements UserServiceFactory {
+public abstract class UserService extends Service implements UserServiceFactory {
     private Publication chosenPub;
     private boolean shouldExit = false;
 
@@ -23,21 +23,6 @@ public abstract class UserService implements UserServiceFactory {
                 }
             } else {
                 System.out.println("Could not parse the command, please provide the following format: command option/none. Or type 'help'");
-            }
-        }
-    }
-
-    public int readIndex(int size) {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            String request = scanner.nextLine().trim();
-            if (request.matches("\\d+")) {
-                int index = Integer.parseInt(request);
-                if (size >= index && index >= 0) {
-                    return index;
-                }
-            } else {
-                System.out.println("Please type an index between 0 and " + size);
             }
         }
     }

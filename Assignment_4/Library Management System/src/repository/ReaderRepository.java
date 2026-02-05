@@ -1,14 +1,18 @@
 package repository;
 
 import domain.human.Reader;
-import domain.publications.Publication;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 
 public class ReaderRepository implements Repository<Reader> {
-    private final ArrayList<Reader> readers = new ArrayList<>();
+    private final ArrayList<Reader> readers = new ArrayList<Reader>(){{
+        add(new Reader("Marley", "Buck"));
+        add(new Reader("Carley", "Robinson"));
+        add(new Reader("Carley", "Robinson"));
+        add(new Reader("Joshua", "Estes"));
+    }};
 
     @Override
     public void add(Reader reader) {
@@ -47,17 +51,6 @@ public class ReaderRepository implements Repository<Reader> {
 
     @Override
     public ArrayList<Reader> find(String name) {
-        return (ArrayList<Reader>) readers.stream().filter(reader -> reader.getFirstName().equals(name)).collect(Collectors.toList());
-    }
-
-    public ArrayList<Reader> getReaders() {
-        return readers;
-    }
-    public Reader getReader(String name, String last){
-        try {
-            return readers.stream().filter(s -> s.getFirstName().equalsIgnoreCase(name) && s.getLastName().equalsIgnoreCase(last)).findFirst().get();
-        } catch (Exception e) {
-            return null;
-        }
+        return (ArrayList<Reader>) readers.stream().filter(reader -> reader.getFirstName().equalsIgnoreCase(name) || reader.getLastName().equalsIgnoreCase(name)).collect(Collectors.toList());
     }
 }

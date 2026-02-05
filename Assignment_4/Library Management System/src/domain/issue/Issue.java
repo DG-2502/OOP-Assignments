@@ -1,6 +1,5 @@
 package domain.issue;
 
-import domain.human.Librarian;
 import domain.publications.Publication;
 import domain.human.Reader;
 

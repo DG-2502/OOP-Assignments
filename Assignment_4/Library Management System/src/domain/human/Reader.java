@@ -17,13 +17,13 @@ public class Reader extends Human{
     }
 
     public Reader(String firstName, String lastName){
-        super(firstName, lastName);;
+        super(firstName, lastName);
         this.publications = new PublicationRepository();
     }
 
     @Override
     public String toString() {
-        return super.toString() + "\n    Has these publications:\n" + publications.toString();
+        return "Reader " + super.toString();
     }
 
     public boolean hasPublication(Publication publication) {

@@ -3,6 +3,11 @@ package domain.publications;
 public class Disc extends Publication{
     public final String narrator;
 
+    public Disc(String author, String title) {
+        super(author, title);
+        this.narrator = "None";
+    }
+
     public Disc() {
         super("Disc", "Disc");
         this.narrator = "None";
@@ -13,9 +18,21 @@ public class Disc extends Publication{
         this.narrator = narrator;
     }
 
+    public String getNarrator() {
+        return narrator;
+    }
+
     @Override
     public String toString() {
         return super.toString() + " " + narrator;
+    }
+
+    @Override
+    public boolean compare(Publication p) {
+        if (p instanceof Disc comp) {
+            return super.compare(p) || comp.getNarrator().equals(narrator);
+        }
+        return super.compare(p);
     }
 
     @Override

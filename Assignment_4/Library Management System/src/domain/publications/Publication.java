@@ -6,17 +6,11 @@ public abstract class Publication {
     private final String title;
     private int amount;
 
-    public Publication() {
-        this.year = 0;
-        this.author = "None";
-        this.title = "None";
-        this.amount = 1;
-    }
-
     public Publication(String author, String title){
-        this.year = 0;
-        this.author = "None" + author;
-        this.title = "None" + title;
+        this.year = 1900 + ((int) (Math.random() * 126));
+        this.author = author;
+        this.title = title;
+        this.amount = ((int) (Math.random() * 5));
     }
 
     public Publication(int year, String author, String title) {
@@ -38,13 +32,9 @@ public abstract class Publication {
         return author;
     }
 
-    public int getAmount() {
-        return amount;
-    }
-
     @Override
     public String toString() {
-        return title + " " + author + " " + year + " " + amount;
+        return author + " " + title + " " + year + " " + amount;
     }
 
     public void increase() {

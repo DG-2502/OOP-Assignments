@@ -28,7 +28,7 @@ public class IssueRepository implements Repository<Issue> {
 
     @Override
     public void print() {
-        for (Issue issue : issues){
+        for (Issue issue : issues) {
             System.out.println(issue);
         }
     }

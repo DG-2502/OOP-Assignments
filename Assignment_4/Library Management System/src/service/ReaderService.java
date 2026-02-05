@@ -1,29 +1,28 @@
 package service;
 
 import domain.human.Reader;
-import domain.issue.Issue;
 import domain.publications.Publication;
-import repository.LibraryRepository;
+import repository.PublicationRepository;
 
 import java.util.ArrayList;
 
 public class ReaderService extends UserService {
     private final Reader reader;
-    private final LibraryRepository library;
-    private boolean helpOption = true;
+    private final PublicationRepository publications;
+    private boolean helpOption = true ;
     private boolean showOption = false;
     private boolean listOption = false;
     private boolean takeOption = false;
+    private boolean returnOption = false;
 
-    public ReaderService(Reader reader, LibraryRepository library) {
+    public ReaderService(Reader reader, PublicationRepository publications) {
         this.reader = reader;
-        this.library = library;
-        System.out.println("Logged in as:" + reader.getFirstName());
+        this.publications = publications;
     }
 
     @Override
-    public boolean parseCommand(String command, String option) {
-        if (super.parseCommand(command, option)) {
+    public boolean parseCommand(String command, String query) {
+        if (super.parseCommand(command, query)) {
             return true;
         }
         if (command.equals("help")) {
@@ -36,52 +35,15 @@ public class ReaderService extends UserService {
             return listOption = true;
         }
         if (command.equals("take")) {
-            try {
-                int index = Integer.parseInt(option);
-                setChosenPub(library.getPublications().getByID(index));
-                if (getChosenPub() == null) {
-                    System.out.println("Could not get publication with ID: " + index);
-                    return false;
-                }
-                System.out.println("Chosen publication: " + getChosenPub());
-                return takeOption = true;
-            } catch (NumberFormatException e) {
-                ArrayList<Publication> publications = library.getPublications().find(option);
-                if (publications.isEmpty()) {
-                    System.out.println("Could not find a publication with such a title: " + option);
-                    return false;
-                } else if (publications.size() == 1) {
-                    setChosenPub(publications.getFirst());
-                    System.out.println("Chosen publication: " + getChosenPub());
-                    return takeOption = true;
-                } else {
-                    System.out.println("Found several publications with such a title: " + option);
-                    for (Publication publication : publications) {
-                        System.out.println(publications.indexOf(publication) + " " + publication);
-                    }
-                    setChosenPub(publications.get(readIndex(publications.size() - 1)));
-                    System.out.println("Chosen publication: " + getChosenPub());
-                    return takeOption = true;
-                }
-            }
+            return takeOption = getPublication(query, publications);
         }
-//        if (command.equals("return")) {
-//            try {
-//                int index = Integer.parseInt(option);
-//                setChosenPub(reader.getPublications().getByID(index));
-//                if (getChosenPub() == null) {
-//                    System.out.println("Could not get publication with ID: " + index);
-//                    return false;
-//                }
-//                System.out.println("Chosen publication: " + getChosenPub());
-//                return takeOption = true;
-//            } catch (NumberFormatException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
+        if (command.equals("return")) {
+            return  returnOption = getPublication(query, reader.getPublications());
+        }
         System.out.println("Could not find the command, type 'help' to see the list of possible commands");
         return false;
     }
+
 
     @Override
     public void executeCommands() {
@@ -97,7 +59,7 @@ public class ReaderService extends UserService {
         }
         if (showOption) {
             System.out.println("**Available publications**");
-            library.getPublications().print();
+            publications.print();
             showOption = false;
         }
         if (listOption) {
@@ -113,6 +75,41 @@ public class ReaderService extends UserService {
             }
             takeOption = false;
         }
+        if (returnOption) {
+            returnPublication(getChosenPub());
+            returnOption = false;
+        }
+    }
+
+    private boolean getPublication(String query, PublicationRepository publications) {
+        try {
+            int index = Integer.parseInt(query);
+            setChosenPub(publications.getByID(index));
+            if (getChosenPub() == null) {
+                System.out.println("Could not get publication with ID: " + index);
+                return false;
+            }
+            System.out.println("Chosen publication: " + getChosenPub());
+            return true;
+        } catch (NumberFormatException e) {
+            ArrayList<Publication> publications1 = publications.find(query);
+            if (publications1.isEmpty()) {
+                System.out.println("Could not find a publication with such a title: " + query);
+                return false;
+            } else if (publications1.size() == 1) {
+                setChosenPub(publications1.getFirst());
+                System.out.println("Chosen publication: " + getChosenPub());
+                return true;
+            } else {
+                System.out.println("Found several publications with such a title: " + query);
+                for (Publication publication : publications1) {
+                    System.out.println(publications1.indexOf(publication) + " " + publication);
+                }
+                setChosenPub(publications1.get(readIndex(publications1.size() - 1)));
+                System.out.println("Chosen publication: " + getChosenPub());
+                return true;
+            }
+        }
     }
 
     public boolean takePublication(Publication publication) {
@@ -123,14 +120,17 @@ public class ReaderService extends UserService {
         if (publication.decrease()) {
             Publication taken = publication.clone();
             reader.addPublicationNew(taken);
-            library.addIssue(new Issue(reader, taken));
+//            library.addIssue(new Issue(reader, taken));
+            System.out.println("Should make an Issue");
             return true;
         }
         System.out.println("Could not issue a publication, no copy available at the moment!");
         return false;
     }
 
-    public void returnPublication() {
-
+    public void returnPublication(Publication publication) {
+        reader.getPublications().getPublications().remove(publication);
+        publications.addNew(publication);
+        System.out.println("Should close Issue");
     }
 }

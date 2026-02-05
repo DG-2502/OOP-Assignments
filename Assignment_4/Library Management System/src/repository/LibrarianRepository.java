@@ -1,15 +1,18 @@
 package repository;
 
 import domain.human.Librarian;
-import domain.human.NoLibrarian;
-import domain.human.Reader;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 
 public class LibrarianRepository implements Repository<Librarian> {
-    private final ArrayList<Librarian> librarians = new ArrayList<>(){
+    private final ArrayList<Librarian> librarians = new ArrayList<>(){{
+        add(new Librarian("Rosemary", "Mendez"));
+        add(new Librarian("Lindsey", "Stanley"));
+        add(new Librarian("Carley", "Robinson"));
+        add(new Librarian("Gustavo", "Vaughan"));
+    }
     };
 
     public void add(Librarian librarian){
@@ -26,16 +29,11 @@ public class LibrarianRepository implements Repository<Librarian> {
         return librarians.contains(librarian);
     }
 
-    public Librarian getById(int id) {
-        try {
-            return librarians.stream().filter(s -> s.getId() == id).findFirst().get();
-        } catch (Exception e) {
-            return new NoLibrarian(id);        }
-    }
-
     @Override
     public void print() {
-
+//        for (Librarian librarian : librarians){
+//            System.out.println(librarians.indexOf(librarian) + " " + librarian);
+//        }
     }
 
     @Override
@@ -45,6 +43,6 @@ public class LibrarianRepository implements Repository<Librarian> {
 
     @Override
     public ArrayList<Librarian> find(String name) {
-        return (ArrayList<Librarian>) librarians.stream().filter(librarian -> librarian.getFirstName().equals(name)).collect(Collectors.toList());
+        return (ArrayList<Librarian>) librarians.stream().filter(librarian -> librarian.getFirstName().equalsIgnoreCase(name) || librarian.getLastName().equalsIgnoreCase(name)).collect(Collectors.toList());
     }
 }
