@@ -17,6 +17,10 @@ public class Disc extends Publication{
         super(year, author, title);
         this.narrator = narrator;
     }
+    private Disc(int year, String author, String title, String narrator, int id) {
+        super(year, author, title, id);
+        this.narrator = narrator;
+    }
 
     public String getNarrator() {
         return narrator;
@@ -37,6 +41,6 @@ public class Disc extends Publication{
 
     @Override
     public Publication clone() {
-        return new Disc(getYear(), getAuthor(), getTitle(), this.narrator);
+        return new Disc(getYear(), getAuthor(), getTitle(), this.narrator, getId());
     }
 }

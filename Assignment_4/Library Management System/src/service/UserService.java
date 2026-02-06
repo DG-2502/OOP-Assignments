@@ -1,54 +1,46 @@
 package service;
 
 import domain.publications.Publication;
+import repository.PublicationRepository;
 
-import java.util.Scanner;
+import java.util.ArrayList;
 
-public abstract class UserService extends Service implements UserServiceFactory {
-    private Publication chosenPub;
-    private boolean shouldExit = false;
+public abstract class UserService{
+    private int chosenPubId;
 
-    public void readInput() {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            String request = scanner.nextLine().trim();
-            if (request.matches("\\w+\\s+\\w+")) {
-                String[] split = request.split("\\s+");
-                if (parseCommand(split[0].toLowerCase(), split[1])) {
-                    break;
-                }
-            } else if (request.matches("\\w+")) {
-                if (parseCommand(request.toLowerCase(), "none")) {
-                    break;
-                }
-            } else {
-                System.out.println("Could not parse the command, please provide the following format: command option/none. Or type 'help'");
+    public boolean getPublication(String query, PublicationRepository publications) {
+        try {
+            int index = Integer.parseInt(query);
+            if (publications.hasId(index)) {
+                setChosenPubId(index);
+                System.out.println("Chosen publication: " + publications.getByID(index));
+                return true;
             }
+            System.out.println("Could not get publication with ID: " + index);
+            return false;
+        } catch (NumberFormatException e) {
+            ArrayList<Publication> publications1 = publications.find(query);
+            if (publications1.isEmpty()) {
+                System.out.println("Could not find a publication with such a title: " + query);
+                return false;
+            } else if (publications1.size() != 1) {
+                System.out.println("Found several publications with such a title: " + query);
+                for (Publication publication : publications1) {
+                    System.out.println(publication);
+                }
+                return false;
+            }
+            setChosenPubId(publications1.getFirst().getId());
+            System.out.println("Chosen publication: " + publications1.getFirst());
+            return true;
         }
     }
 
-    public boolean parseCommand(String command, String option) {
-        if (command.equals("exit")) {
-            return shouldExit = true;
-        }
-        return false;
+    public int getChosenPubId() {
+        return chosenPubId;
     }
 
-    public void executeCommands(){
-        if (shouldExit) {
-            System.out.println("Logging out of the system");
-        }
-    }
-
-    public Publication getChosenPub() {
-        return chosenPub;
-    }
-
-    public void setChosenPub(Publication chosenPub) {
-        this.chosenPub = chosenPub;
-    }
-
-    public boolean getShouldExit() {
-        return shouldExit;
+    public void setChosenPubId(int chosenPubId) {
+        this.chosenPubId = chosenPubId;
     }
 }

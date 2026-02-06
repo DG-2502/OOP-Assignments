@@ -22,8 +22,9 @@ public class IssueRepository implements Repository<Issue> {
         return issues.contains(issue);
     }
 
-    public Issue getById(int i){
-        return issues.get(i);
+    @Override
+    public boolean hasId(int id) {
+        return false;
     }
 
     @Override

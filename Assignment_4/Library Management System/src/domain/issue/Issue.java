@@ -1,7 +1,7 @@
 package domain.issue;
 
 import domain.publications.Publication;
-import domain.human.Reader;
+import domain.user.Reader;
 
 public class Issue {
     private final Reader receiver;

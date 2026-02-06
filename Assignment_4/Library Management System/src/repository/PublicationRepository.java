@@ -1,8 +1,5 @@
 package repository;
 
-import domain.publications.Book;
-import domain.publications.Disc;
-import domain.publications.Magazine;
 import domain.publications.Publication;
 
 import java.util.ArrayList;
@@ -12,25 +9,7 @@ public class PublicationRepository implements Repository<Publication> {
     private final ArrayList<Publication> publications = new ArrayList<>(){};
 
     @Override
-    public void add(Publication pub) {
-        publications.add(pub);
-        if (!has(pub)) {
-            this.publications.add(pub);
-        } else {
-            getByID(pub.getTitle()).increase();
-        }
-    }
-
-    public void add(String title) {
-        if (has(title)){
-            getByID(title).increase();
-        }
-        else {
-            System.out.println("There is no publication registered with such title: " + title);
-        }
-    }
-
-    public void addNew(Publication publication){
+    public void add(Publication publication) {
         if (has(publication)) {
             getPublication(publication).increase();
         }
@@ -39,18 +18,20 @@ public class PublicationRepository implements Repository<Publication> {
         }
     }
 
-    public void print(){
-        for (Publication publication : publications) {
-            System.out.println(publications.indexOf(publication) + " " +  publication);
-        }
-    }
-    public int size() {
-        return publications.size();
+    public void addByID(int id) {
+        getByID(id).increase();
     }
 
     @Override
-    public void remove(int i) {
-        publications.remove(i);
+    public void print(){
+        for (Publication publication : publications) {
+            System.out.println(publication);
+        }
+    }
+
+    @Override
+    public void remove(int id) {
+        publications.remove(getByID(id));
     }
 
     @Override
@@ -62,37 +43,14 @@ public class PublicationRepository implements Repository<Publication> {
         return publications.stream().filter(publication1 -> publication1.compare(publication)).findFirst().get();
     }
 
-    public boolean has(String title){
-        return publications.stream().anyMatch(publication -> publication.getTitle().equals(title));
-    }
-
     @Override
-    public String toString() {
-        if (publications.isEmpty()) {
-            return "    No publications";
-        }
-        String string = "    ";
-        for (Publication publication : publications){
-            string = string.concat("    " + publication.toString());
-        }
-        return string;
-    }
-
-    public ArrayList<Publication> getPublications() {
-        return publications;
-    }
-
-    public Publication getByID(String title) {
-       return publications.stream().filter(publication -> publication.getTitle().equals(title)).findFirst().get();
+    public boolean hasId(int id) {
+        return publications.stream().anyMatch(publication -> publication.getId() == id);
     }
 
     @Override
     public Publication getByID(int id) {
-        try {
-            return publications.get(id);
-        } catch (Exception e) {
-            return null;
-        }
+        return publications.stream().filter(publication -> publication.getId() == id).findFirst().get();
     }
 
     @Override

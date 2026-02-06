@@ -17,6 +17,10 @@ public class Book extends Publication {
         super(year, author, title);
         this.pages = pages;
     }
+    private Book(int year, String author, String title, int pages, int id) {
+        super(year, author, title, id);
+        this.pages = pages;
+    }
 
     public int getPages() {
         return pages;
@@ -37,6 +41,6 @@ public class Book extends Publication {
 
     @Override
     public Publication clone() {
-        return new Book(getYear(), getAuthor(), getTitle(), this.pages);
+        return new Book(getYear(), getAuthor(), getTitle(), this.pages, getId());
     }
 }

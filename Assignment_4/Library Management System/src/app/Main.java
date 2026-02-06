@@ -1,10 +1,11 @@
-import service.LMSService;
+import console.AppConsole;
+import console.Console;
 
 void main() {
     System.out.println("---Data Management System---");
 
-    LMSService lmsService = new LMSService();
-    while (true) {
-        lmsService.run();
+    Console console = new AppConsole();
+    while (!console.getExitOption()) {
+        console.run();
     }
 }

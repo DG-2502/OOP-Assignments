@@ -1,6 +1,6 @@
-package domain.human;
+package domain.user;
 
-public class Librarian extends Human {
+public class Librarian extends User {
 
     public Librarian() {
         super();
@@ -12,6 +12,6 @@ public class Librarian extends Human {
 
     @Override
     public String toString() {
-        return "Librarian " + super.toString();
+        return super.toString() + " (Librarian)";
     }
 }

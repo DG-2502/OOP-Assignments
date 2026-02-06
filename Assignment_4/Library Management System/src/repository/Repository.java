@@ -8,6 +8,7 @@ public interface Repository<T> {
     void add(T t);
     void remove(int i);
     boolean has(T t);
+    boolean hasId(int id);
     void print();
     T getByID(int id);
     ArrayList<T> find(String string);

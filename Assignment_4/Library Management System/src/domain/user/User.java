@@ -1,26 +1,27 @@
-package domain.human;
+package domain.user;
 
-import java.util.Random;
-import java.util.random.RandomGenerator;
+import domain.Entity;
 
-abstract public class Human {
+abstract public class User extends Entity {
     private final String firstName;
     private final String lastName;
     private final int age = 10 + ((int) (Math.random() * 50));
 
-    public Human(String firstName, String lastName) {
+    public User(String firstName, String lastName) {
+        super();
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public Human() {
+    public User() {
+        super();
         this.firstName = "Mike";
         this.lastName = "Sally";
     }
 
     @Override
     public String toString() {
-        return firstName + " " + lastName + " " + age + "y.o";
+        return super.toString() + firstName + " " + lastName + " " + age + "y.o";
     }
 
     public String getFirstName() {

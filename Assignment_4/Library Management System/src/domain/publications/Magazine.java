@@ -8,6 +8,9 @@ public class Magazine extends Publication{
     public Magazine(int year, String author, String title) {
         super(year, author, title);
     }
+    private Magazine(int year, String author, String title, int id) {
+        super(year, author, title, id);
+    }
 
     public Magazine() {
         super("Magazine", "Magazine");
@@ -23,6 +26,6 @@ public class Magazine extends Publication{
 
     @Override
     public Publication clone() {
-        return new Magazine(getYear(), getAuthor(), getTitle());
+        return new Magazine(getYear(), getAuthor(), getTitle(), getId());
     }
 }

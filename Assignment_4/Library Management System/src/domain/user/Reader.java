@@ -1,9 +1,9 @@
-package domain.human;
+package domain.user;
 
 import domain.publications.Publication;
 import repository.PublicationRepository;
 
-public class Reader extends Human{
+public class Reader extends User {
     private final PublicationRepository publications;
 
     public Reader() {
@@ -23,18 +23,15 @@ public class Reader extends Human{
 
     @Override
     public String toString() {
-        return "Reader " + super.toString();
+        return super.toString() + " (Reader)";
     }
 
-    public boolean hasPublication(Publication publication) {
-        return publications.has(publication);
+    public boolean hasPublication(int id) {
+        return publications.hasId(id);
     }
 
-    public void addPublication(Publication publication){
+    public void addPublication(Publication publication) {
         publications.add(publication);
-    }
-    public void addPublicationNew(Publication publication) {
-        publications.addNew(publication);
     }
     public PublicationRepository getPublications() {
         return publications;
