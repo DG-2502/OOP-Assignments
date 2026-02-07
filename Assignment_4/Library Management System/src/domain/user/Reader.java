@@ -36,4 +36,8 @@ public class Reader extends User {
     public PublicationRepository getPublications() {
         return publications;
     }
+
+    public Reader create() {
+        return null;
+    }
 }

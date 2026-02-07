@@ -10,16 +10,11 @@ public class PublicationRepository implements Repository<Publication> {
 
     @Override
     public void add(Publication publication) {
-        if (has(publication)) {
+        if (hasId(publication.getId())) {
             getPublication(publication).increase();
-        }
-        else {
+        } else {
             publications.add(publication);
         }
-    }
-
-    public void addByID(int id) {
-        getByID(id).increase();
     }
 
     @Override
@@ -34,10 +29,10 @@ public class PublicationRepository implements Repository<Publication> {
         publications.remove(getByID(id));
     }
 
-    @Override
-    public boolean has(Publication publication) {
-        return publications.stream().anyMatch(publication1 -> publication1.compare(publication));
-    }
+//    @Override
+//    public boolean has(Publication publication) {
+//        return publications.stream().anyMatch(publication1 -> publication1.compare(publication));
+//    }
 
     private Publication getPublication(Publication publication) {
         return publications.stream().filter(publication1 -> publication1.compare(publication)).findFirst().get();

@@ -29,10 +29,10 @@ public class UserRepository implements Repository<User> {
         users.remove(i);
     }
 
-    @Override
-    public boolean has(User user) {
-        return users.contains(user);
-    }
+//    @Override
+//    public boolean has(User user) {
+//        return users.contains(user);
+//    }
 
     @Override
     public boolean hasId(int id) {

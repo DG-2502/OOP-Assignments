@@ -6,15 +6,10 @@ import repository.PublicationRepository;
 
 public class ReaderService extends UserService {
     private final Reader reader;
-    private final PublicationRepository publications;
 
     public ReaderService(Reader reader, PublicationRepository publications) {
+        super(publications);
         this.reader = reader;
-        this.publications = publications;
-    }
-
-    public PublicationRepository getPublications() {
-        return publications;
     }
 
     public PublicationRepository getReaderPublications() {
@@ -26,8 +21,8 @@ public class ReaderService extends UserService {
             System.out.println("You already have a copy of this publication");
             return false;
         }
-        if (publications.getByID(getChosenPubId()).decrease()) {
-            Publication taken = publications.getByID(getChosenPubId()).clone();
+        if (getPublications().getByID(getChosenPubId()).decrease()) {
+            Publication taken = getPublications().getByID(getChosenPubId()).clone();
             reader.addPublication(taken);
 //            library.addIssue(new Issue(reader, taken));
             System.out.println("Should make an Issue");
@@ -38,7 +33,8 @@ public class ReaderService extends UserService {
     }
 
     public void returnPublication() {
-        publications.addByID(getChosenPubId());
+//        publications.addByID(getChosenPubId());
+        getPublications().add(getPublications().getByID(getChosenPubId()));
         reader.getPublications().remove(getChosenPubId());
         System.out.println("Should close Issue");
     }

@@ -9,6 +9,7 @@ import domain.user.User;
 import repository.PublicationRepository;
 import repository.Repository;
 import repository.UserRepository;
+import service.LibrarianService;
 import service.ReaderService;
 
 import java.util.ArrayList;
@@ -37,12 +38,15 @@ public class AppConsole extends BasicConsole {
     @Override
     public void run() {
         executeCommands();
-        readInput();
         if (userConsole != null) {
             while (!userConsole.getExitOption()) {
                 userConsole.run();
             }
+            userConsole = null;
+            setHelpOption(true);
+            executeCommands();
         }
+        readInput();
     }
 
     @Override
@@ -53,6 +57,7 @@ public class AppConsole extends BasicConsole {
         if (command.equals("login")) {
             return loginOption = getUser(option);
         }
+        System.out.println("Could not find any matching command! Type help to see more!");
         return false;
     }
 
@@ -100,13 +105,14 @@ public class AppConsole extends BasicConsole {
 
     private void login() {
         if (userConsole == null) {
+            System.out.println("Logging in");
             User user = userRepository.getByID(chosenUserID);
             if (user instanceof Reader) {
                 this.userConsole = new ReaderConsole(new ReaderService((Reader) user, publicationRepository));
             } else if (user instanceof Librarian) {
-                System.out.println("Not implemented yet");
-            }
-            else {
+//                System.out.println("Not implemented yet");
+                this.userConsole = new LibrarianConsole(new LibrarianService(publicationRepository));
+            } else {
                 System.out.println("No implementation for that class yet");
             }
             System.out.println("Logged in as: " + user);

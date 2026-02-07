@@ -17,10 +17,10 @@ public class IssueRepository implements Repository<Issue> {
         issues.remove(i);
     }
 
-    @Override
-    public boolean has(Issue issue) {
-        return issues.contains(issue);
-    }
+//    @Override
+//    public boolean has(Issue issue) {
+//        return issues.contains(issue);
+//    }
 
     @Override
     public boolean hasId(int id) {

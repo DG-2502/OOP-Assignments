@@ -41,7 +41,6 @@ public class ReaderConsole extends UserConsole {
             System.out.println("show - Show the available publications");
             System.out.println("list - Show taken publications");
             System.out.println("take index/title - Take a publication");
-            System.out.println("exit - Log out of the system");
             setHelpOption(false);
         }
         if (showOption) {

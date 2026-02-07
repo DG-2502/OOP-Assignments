@@ -5,8 +5,17 @@ import repository.PublicationRepository;
 
 import java.util.ArrayList;
 
-public abstract class UserService{
+public abstract class UserService {
     private int chosenPubId;
+    private final PublicationRepository publications;
+
+    public UserService(PublicationRepository publications) {
+        this.publications = publications;
+    }
+
+    public PublicationRepository getPublications() {
+        return publications;
+    }
 
     public boolean getPublication(String query, PublicationRepository publications) {
         try {
