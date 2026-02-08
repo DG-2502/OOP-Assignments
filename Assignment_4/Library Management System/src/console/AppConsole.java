@@ -111,7 +111,7 @@ public class AppConsole extends BasicConsole {
                 this.userConsole = new ReaderConsole(new ReaderService((Reader) user, publicationRepository));
             } else if (user instanceof Librarian) {
 //                System.out.println("Not implemented yet");
-                this.userConsole = new LibrarianConsole(new LibrarianService(publicationRepository));
+                this.userConsole = new LibrarianConsole(new LibrarianService(publicationRepository, userRepository));
             } else {
                 System.out.println("No implementation for that class yet");
             }

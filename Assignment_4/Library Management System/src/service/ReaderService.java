@@ -34,7 +34,7 @@ public class ReaderService extends UserService {
 
     public void returnPublication() {
 //        publications.addByID(getChosenPubId());
-        getPublications().add(getPublications().getByID(getChosenPubId()));
+        getPublications().add(reader.getPublications().getByID(getChosenPubId()));
         reader.getPublications().remove(getChosenPubId());
         System.out.println("Should close Issue");
     }

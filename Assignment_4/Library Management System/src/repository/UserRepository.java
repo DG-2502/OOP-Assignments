@@ -25,8 +25,8 @@ public class UserRepository implements Repository<User> {
     }
 
     @Override
-    public void remove(int i) {
-        users.remove(i);
+    public void remove(int id) {
+        users.remove(getByID(id));
     }
 
 //    @Override

@@ -3,6 +3,8 @@ package domain.user;
 import domain.publications.Publication;
 import repository.PublicationRepository;
 
+import java.util.Scanner;
+
 public class Reader extends User {
     private final PublicationRepository publications;
 
@@ -37,7 +39,4 @@ public class Reader extends User {
         return publications;
     }
 
-    public Reader create() {
-        return null;
-    }
 }
