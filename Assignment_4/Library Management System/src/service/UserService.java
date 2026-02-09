@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public abstract class UserService {
     private int chosenPubId;
     private final PublicationRepository publications;
+//    public final IssueService issueService;
 
     public UserService(PublicationRepository publications) {
         this.publications = publications;

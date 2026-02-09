@@ -5,6 +5,7 @@ import java.util.Scanner;
 public abstract class BasicConsole implements Console {
     private boolean exitOption = false;
     private boolean helpOption = true;
+    private static int day = 0;
 
     public void readInput() {
         Scanner scanner = new Scanner(System.in);
@@ -32,6 +33,10 @@ public abstract class BasicConsole implements Console {
         if (command.equals("help")) {
             return helpOption = true;
         }
+        if (command.equals("nextday")){
+            day += 1;
+            System.out.println("The next day has come");
+        }
         return false;
     }
 
@@ -54,6 +59,10 @@ public abstract class BasicConsole implements Console {
 
     public boolean getHelpOption() {
         return helpOption;
+    }
+
+    public static int getDay() {
+        return day;
     }
 
     public void setHelpOption(boolean helpOption) {

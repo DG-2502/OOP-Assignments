@@ -9,6 +9,7 @@ import domain.user.User;
 import repository.PublicationRepository;
 import repository.Repository;
 import repository.UserRepository;
+import service.IssueService;
 import service.LibrarianService;
 import service.ReaderService;
 
@@ -21,6 +22,7 @@ public class AppConsole extends BasicConsole {
     private final Repository<User> userRepository;
     //    private Repository<Publication> publicationRepository;
     private final PublicationRepository publicationRepository;
+    private  IssueService issueService;
 
     public AppConsole() {
         this.userRepository = new UserRepository();
@@ -108,7 +110,7 @@ public class AppConsole extends BasicConsole {
             System.out.println("Logging in");
             User user = userRepository.getByID(chosenUserID);
             if (user instanceof Reader) {
-                this.userConsole = new ReaderConsole(new ReaderService((Reader) user, publicationRepository));
+                this.userConsole = new ReaderConsole(new ReaderService((Reader) user, publicationRepository, issueService));
             } else if (user instanceof Librarian) {
 //                System.out.println("Not implemented yet");
                 this.userConsole = new LibrarianConsole(new LibrarianService(publicationRepository, userRepository));

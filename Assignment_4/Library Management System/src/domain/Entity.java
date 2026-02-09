@@ -1,7 +1,7 @@
 package domain;
 
 public abstract class Entity {
-    private static int ID = 10;
+    private static int ID = 0;
     private final int id;
 
     public Entity() {

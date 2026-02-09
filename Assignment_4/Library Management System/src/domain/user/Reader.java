@@ -3,8 +3,6 @@ package domain.user;
 import domain.publications.Publication;
 import repository.PublicationRepository;
 
-import java.util.Scanner;
-
 public class Reader extends User {
     private final PublicationRepository publications;
 
@@ -18,7 +16,7 @@ public class Reader extends User {
         this.publications = takenPublications;
     }
 
-    public Reader(String firstName, String lastName){
+    public Reader(String firstName, String lastName) {
         super(firstName, lastName);
         this.publications = new PublicationRepository();
     }
@@ -38,5 +36,4 @@ public class Reader extends User {
     public PublicationRepository getPublications() {
         return publications;
     }
-
 }

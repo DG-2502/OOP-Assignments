@@ -1,13 +1,19 @@
 package domain.issue;
 
+import domain.Entity;
 import domain.publications.Publication;
 import domain.user.Reader;
 
-public class Issue {
+public class Issue extends Entity {
     private final Reader receiver;
     private final Publication received;
+    private boolean closed = false;
+    private final int dayTaken;
+    private int dayReturned;
 
-    public Issue(Reader receiver, Publication received) {
+    public Issue(int day, Reader receiver, Publication received) {
+        super();
+        this.dayTaken = day;
         this.receiver = receiver;
         this.received = received;
     }
@@ -23,5 +29,10 @@ public class Issue {
 
     public Reader getReceiver() {
         return receiver;
+    }
+
+    public void close(int day) {
+        this.dayReturned = day;
+        this.closed = true;
     }
 }

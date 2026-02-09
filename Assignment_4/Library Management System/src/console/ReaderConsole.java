@@ -54,7 +54,7 @@ public class ReaderConsole extends UserConsole {
             listOption = false;
         }
         if (takeOption) {
-            if (readerService.takePublication()) {
+            if (readerService.takePublication(getDay())) {
                 System.out.println("Successfully taken the publication!");
             } else {
                 System.out.println("Could not take a publication due to the reason above!");
@@ -62,7 +62,7 @@ public class ReaderConsole extends UserConsole {
             takeOption = false;
         }
         if (returnOption) {
-            readerService.returnPublication();
+            readerService.returnPublication(getDay());
             returnOption = false;
         }
     }
