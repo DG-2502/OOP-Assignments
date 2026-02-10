@@ -9,11 +9,13 @@ public class Issue extends Entity {
     private final Publication received;
     private boolean closed = false;
     private final int dayTaken;
+    private final int dayPlannedReturn;
     private int dayReturned;
 
-    public Issue(int day, Reader receiver, Publication received) {
+    public Issue(int dayTaken, int dayPlannedReturn, Reader receiver, Publication received) {
         super();
-        this.dayTaken = day;
+        this.dayTaken = dayTaken;
+        this.dayPlannedReturn = dayPlannedReturn;
         this.receiver = receiver;
         this.received = received;
     }

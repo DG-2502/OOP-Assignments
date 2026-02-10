@@ -6,8 +6,6 @@ import domain.user.Reader;
 import repository.IssueRepository;
 import repository.Repository;
 
-import java.util.Scanner;
-
 public class IssueService {
     private final Repository<Issue> issueRepository;
 
@@ -15,24 +13,13 @@ public class IssueService {
         this.issueRepository = new IssueRepository();
     }
 
-    public Issue createIssue(int day, Reader reader, Publication publication) {
-        Scanner scanner = new Scanner(System.in);
-        String nextline;
-        while (true) {
-            nextline = scanner.nextLine();
-            int number = 0;
-            try {
-                number = Integer.parseInt(nextline);
-            } catch (NumberFormatException e) {
-                System.out.println("Please type a number");
-                continue;
-            }
-            if (number >= 1 & number <= 28) {
-                Issue issue = new Issue(day, reader, publication);
-                issueRepository.add(issue);
-                return issue;
-            }
-            System.out.println("Please type a number between 1 and 28");
-        }
+    public int createIssue(int dayTaken, int dayPlannedReturn, Reader reader, Publication publication) {
+        Issue issue = new Issue(dayTaken, dayPlannedReturn, reader, publication);
+        issueRepository.add(issue);
+        return issue.getId();
+    }
+
+    public void closeById(int id, int day) {
+        issueRepository.getByID(id).close(day);
     }
 }

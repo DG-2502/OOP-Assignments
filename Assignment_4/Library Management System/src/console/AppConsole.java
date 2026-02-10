@@ -22,11 +22,12 @@ public class AppConsole extends BasicConsole {
     private final Repository<User> userRepository;
     //    private Repository<Publication> publicationRepository;
     private final PublicationRepository publicationRepository;
-    private  IssueService issueService;
+    private final IssueService issueService;
 
     public AppConsole() {
         this.userRepository = new UserRepository();
         this.publicationRepository = new PublicationRepository();
+        this.issueService = new IssueService();
         publicationRepository.add(new Book("R.J. Darkwater", "A Culinary History of the Moon"));
         publicationRepository.add(new Book("R.J. Darkwater", "A"));
         publicationRepository.add(new Book("R.J. Darkwater", "A"));
@@ -110,12 +111,11 @@ public class AppConsole extends BasicConsole {
             System.out.println("Logging in");
             User user = userRepository.getByID(chosenUserID);
             if (user instanceof Reader) {
-                this.userConsole = new ReaderConsole(new ReaderService((Reader) user, publicationRepository, issueService));
+                this.userConsole = new ReaderConsole(new ReaderService((Reader) user, publicationRepository, issueService), new LibrarianService(publicationRepository, userRepository));
             } else if (user instanceof Librarian) {
-//                System.out.println("Not implemented yet");
                 this.userConsole = new LibrarianConsole(new LibrarianService(publicationRepository, userRepository));
             } else {
-                System.out.println("No implementation for that class yet");
+                System.out.println("Please implement console and service your new class at first");
             }
             System.out.println("Logged in as: " + user);
         } else {

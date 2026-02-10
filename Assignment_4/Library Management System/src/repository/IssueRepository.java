@@ -36,7 +36,7 @@ public class IssueRepository implements Repository<Issue> {
 
     @Override
     public Issue getByID(int id) {
-        return null;
+        return issues.stream().filter(issue -> issue.getId() == id).findFirst().get();
     }
 
     @Override
