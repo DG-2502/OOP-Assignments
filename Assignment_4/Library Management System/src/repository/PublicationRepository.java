@@ -17,12 +17,12 @@ public class PublicationRepository implements Repository<Publication> {
         }
     }
 
-    @Override
-    public void print(){
-        for (Publication publication : publications) {
-            System.out.println(publication);
-        }
-    }
+//    @Override
+//    public void print() {
+//        for (Publication publication : publications) {
+//            System.out.println(publication);
+//        }
+//    }
 
     @Override
     public void remove(int id) {
@@ -46,6 +46,11 @@ public class PublicationRepository implements Repository<Publication> {
     @Override
     public Publication getByID(int id) {
         return publications.stream().filter(publication -> publication.getId() == id).findFirst().get();
+    }
+
+    @Override
+    public ArrayList<Publication> getAll() {
+        return publications;
     }
 
     @Override

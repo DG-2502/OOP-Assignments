@@ -1,6 +1,8 @@
 package console;
 
 public abstract class UserConsole extends BasicConsole {
+    public String query;
+
     public boolean parseCommand(String command, String option) {
         if (super.parseCommand(command, option)) {
             return true;

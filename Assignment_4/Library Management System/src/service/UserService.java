@@ -8,14 +8,15 @@ import java.util.ArrayList;
 
 public abstract class UserService {
     private int chosenPubId;
-    private final PublicationRepository publications;
-//    public final IssueService issueService;
+    protected final PublicationRepository publications;
+    protected final IssueService issueService;
 
-    public UserService(PublicationRepository publications) {
+    public UserService(PublicationRepository publications, IssueService issueService) {
         this.publications = publications;
+        this.issueService = issueService;
     }
 
-    public PublicationRepository getPublications() {
+    public PublicationRepository getPublicationRepository() {
         return publications;
     }
 

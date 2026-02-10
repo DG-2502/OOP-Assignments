@@ -1,5 +1,6 @@
 package service;
 
+import domain.issue.Issue;
 import domain.user.Librarian;
 import domain.user.Reader;
 import domain.user.User;
@@ -12,9 +13,17 @@ public class LibrarianService extends UserService {
     private int chosenUserID;
     private final Repository<User> userRepository;
 
-    public LibrarianService(PublicationRepository publications, Repository<User> userRepository) {
-        super(publications);
+    public LibrarianService(PublicationRepository publications, Repository<User> userRepository, IssueService issueService) {
+        super(publications, issueService);
         this.userRepository = userRepository;
+    }
+
+    public Repository<User> getUserRepository() {
+        return userRepository;
+    }
+
+    public Repository<Issue> getIssueRepository() {
+        return issueService.getIssueRepository();
     }
 
     private String[] registerUser() {
@@ -67,11 +76,6 @@ public class LibrarianService extends UserService {
         return false;
     }
 
-    public void listUsers() {
-        System.out.println("**Users**");
-        userRepository.print();
-    }
-
     public boolean delete(String option) {
         try {
             int id = Integer.parseInt(option);
@@ -79,8 +83,8 @@ public class LibrarianService extends UserService {
                 userRepository.remove(id);
                 return true;
             }
-            if (getPublications().hasId(id)) {
-                getPublications().remove(id);
+            if (publications.hasId(id)) {
+                publications.remove(id);
                 return true;
             }
             System.out.println("Could not find any entity with this ID: " + id);

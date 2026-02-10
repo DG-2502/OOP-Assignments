@@ -27,11 +27,16 @@ public class IssueRepository implements Repository<Issue> {
         return false;
     }
 
+//    @Override
+//    public void print() {
+//        for (Issue issue : issues) {
+//            System.out.println(issue);
+//        }
+//    }
+
     @Override
-    public void print() {
-        for (Issue issue : issues) {
-            System.out.println(issue);
-        }
+    public ArrayList<Issue> getAll() {
+        return issues;
     }
 
     @Override

@@ -108,12 +108,11 @@ public class AppConsole extends BasicConsole {
 
     private void login() {
         if (userConsole == null) {
-            System.out.println("Logging in");
             User user = userRepository.getByID(chosenUserID);
             if (user instanceof Reader) {
-                this.userConsole = new ReaderConsole(new ReaderService((Reader) user, publicationRepository, issueService), new LibrarianService(publicationRepository, userRepository));
+                this.userConsole = new ReaderConsole(new ReaderService((Reader) user, publicationRepository, issueService), new LibrarianService(publicationRepository, userRepository, issueService));
             } else if (user instanceof Librarian) {
-                this.userConsole = new LibrarianConsole(new LibrarianService(publicationRepository, userRepository));
+                this.userConsole = new LibrarianConsole(new LibrarianService(publicationRepository, userRepository, issueService));
             } else {
                 System.out.println("Please implement console and service your new class at first");
             }

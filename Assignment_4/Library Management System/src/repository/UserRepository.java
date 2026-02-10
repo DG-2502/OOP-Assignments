@@ -39,11 +39,16 @@ public class UserRepository implements Repository<User> {
         return users.stream().anyMatch(user -> user.getId() == id);
     }
 
+//    @Override
+//    public void print() {
+//        for (User user : users) {
+//            System.out.println(user);
+//        }
+//    }
+
     @Override
-    public void print() {
-        for (User user : users){
-            System.out.println(user);
-        }
+    public ArrayList<User> getAll() {
+        return users;
     }
 
     @Override

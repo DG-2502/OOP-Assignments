@@ -12,7 +12,6 @@ public class ReaderConsole extends UserConsole {
     private boolean takeOption = false;
     private boolean returnOption = false;
     private boolean nextDayOption = false;
-    private String query;
     private static int day = 0;
 
     public ReaderConsole(ReaderService readerService, LibrarianService librarianService) {
@@ -57,16 +56,16 @@ public class ReaderConsole extends UserConsole {
         }
         if (showOption) {
             System.out.println("**Available publications**");
-            readerService.getPublications().print();
+            readerService.getPublicationRepository().getAll().forEach(System.out::println);
             showOption = false;
         }
         if (listOption) {
             System.out.println("**Taken publications**");
-            readerService.getReaderPublications().print();
+            readerService.getReaderPublications().getAll().forEach(System.out::println);
             listOption = false;
         }
         if (takeOption) {
-            Pair response = readerService.getPublication(query, readerService.getPublications());
+            Pair response = readerService.getPublication(query, readerService.getPublicationRepository());
             System.out.println(response.value());
             if (!response.key()) {
                 return;

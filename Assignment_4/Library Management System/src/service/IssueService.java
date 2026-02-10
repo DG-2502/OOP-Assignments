@@ -1,8 +1,6 @@
 package service;
 
 import domain.issue.Issue;
-import domain.publications.Publication;
-import domain.user.Reader;
 import repository.IssueRepository;
 import repository.Repository;
 
@@ -13,13 +11,16 @@ public class IssueService {
         this.issueRepository = new IssueRepository();
     }
 
-    public int createIssue(int dayTaken, int dayPlannedReturn, Reader reader, Publication publication) {
-        Issue issue = new Issue(dayTaken, dayPlannedReturn, reader, publication);
+    public void createIssue(int dayTaken, int dayPlannedReturn, int readerId, int publicationId) {
+        Issue issue = new Issue(dayTaken, dayPlannedReturn, readerId, publicationId);
         issueRepository.add(issue);
-        return issue.getId();
     }
 
-    public void closeById(int id, int day) {
-        issueRepository.getByID(id).close(day);
+    public void close(int day, int readerId, int pubId) {
+        issueRepository.getAll().stream().filter(issue -> issue.getReaderId() == readerId & issue.getPubId() == pubId).findFirst().get().close(day);
+    }
+
+    public Repository<Issue> getIssueRepository() {
+        return issueRepository;
     }
 }
