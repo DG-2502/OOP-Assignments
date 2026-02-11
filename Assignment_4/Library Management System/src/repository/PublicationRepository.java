@@ -6,15 +6,12 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class PublicationRepository implements Repository<Publication> {
-    private final ArrayList<Publication> publications = new ArrayList<>(){};
+    private final ArrayList<Publication> publications = new ArrayList<>() {
+    };
 
     @Override
     public void add(Publication publication) {
-        if (hasId(publication.getId())) {
-            getPublication(publication).increase();
-        } else {
-            publications.add(publication);
-        }
+        publications.add(publication);
     }
 
 //    @Override
@@ -33,10 +30,6 @@ public class PublicationRepository implements Repository<Publication> {
 //    public boolean has(Publication publication) {
 //        return publications.stream().anyMatch(publication1 -> publication1.compare(publication));
 //    }
-
-    private Publication getPublication(Publication publication) {
-        return publications.stream().filter(publication1 -> publication1.compare(publication)).findFirst().get();
-    }
 
     @Override
     public boolean hasId(int id) {

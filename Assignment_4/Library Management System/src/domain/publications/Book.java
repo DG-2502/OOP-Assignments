@@ -22,6 +22,11 @@ public class Book extends Publication {
         this.pages = pages;
     }
 
+    public Book(String title, String author, String year, String amount, String pages) {
+        super(title, author, year, amount);
+        this.pages = Integer.parseInt(pages);
+    }
+
     public int getPages() {
         return pages;
     }

@@ -8,8 +8,8 @@ import util.Pair;
 public class ReaderService extends UserService {
     private final Reader reader;
 
-    public ReaderService(Reader reader, PublicationRepository publications, IssueService issueService) {
-        super(publications, issueService);
+    public ReaderService(Reader reader, PublicationsService publicationsService, IssuesService issuesService) {
+        super(publicationsService, issuesService);
         this.reader = reader;
     }
 
@@ -21,8 +21,8 @@ public class ReaderService extends UserService {
         if (reader.hasPublication(getChosenPubId())) {
             return new Pair(false, "You already have a copy of this publication");
         }
-        if (publications.getByID(getChosenPubId()).decrease()) {
-            Publication taken = publications.getByID(getChosenPubId()).clone();
+        if (publicationsService.decreaseById(getChosenPubId())) {
+            Publication taken = publicationsService.cloneById(getChosenPubId());
             reader.addPublication(taken);
             return new Pair(true, "Please choose for how long you want to take the publication");
         }
@@ -30,13 +30,13 @@ public class ReaderService extends UserService {
     }
 
     public void makeIssue(String dateTaken, String datePlannedReturn) {
-        issueService.createIssue(dateTaken, datePlannedReturn, reader.getId(), getChosenPubId());
+        issuesService.createIssue(dateTaken, datePlannedReturn, reader.getId(), getChosenPubId());
     }
 
     public void returnPublication(String date) {
         Publication taken = reader.getPublications().getByID(getChosenPubId());
-        publications.add(taken);
+        publicationsService.add(taken);
         reader.getPublications().remove(getChosenPubId());
-        issueService.close(date, reader.getId(), getChosenPubId());
+        issuesService.close(date, reader.getId(), getChosenPubId());
     }
 }

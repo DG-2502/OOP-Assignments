@@ -4,10 +4,10 @@ import domain.issue.Issue;
 import repository.IssueRepository;
 import repository.Repository;
 
-public class IssueService {
+public class IssuesService {
     private final Repository<Issue> issueRepository;
 
-    public IssueService() {
+    public IssuesService() {
         this.issueRepository = new IssueRepository();
     }
 

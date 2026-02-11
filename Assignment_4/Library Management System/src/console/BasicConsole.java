@@ -41,6 +41,21 @@ public abstract class BasicConsole implements Console {
         }
     }
 
+    public String readName(boolean anyName) {
+        Scanner scanner = new Scanner(System.in);
+        String line = scanner.nextLine().trim();
+        if (anyName) {
+            return line;
+        }
+        while (true) {
+            if (line.matches("[a-zA-Z]+")) {
+                return line;
+            }
+            System.out.println("Please enter one word!");
+            line = scanner.nextLine().trim();
+        }
+    }
+
     public boolean parseCommand(String command, String query) {
         if (command.equals("exit")) {
             return exitOption = true;

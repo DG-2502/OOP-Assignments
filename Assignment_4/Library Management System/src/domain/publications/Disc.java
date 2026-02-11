@@ -22,6 +22,11 @@ public class Disc extends Publication{
         this.narrator = narrator;
     }
 
+    public Disc(String title, String author, String year, String amount, String narrator) {
+        super(title, author, year, amount);
+        this.narrator = narrator;
+    }
+
     public String getNarrator() {
         return narrator;
     }

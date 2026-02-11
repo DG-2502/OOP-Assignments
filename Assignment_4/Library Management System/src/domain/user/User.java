@@ -5,18 +5,27 @@ import domain.Entity;
 abstract public class User extends Entity {
     private final String firstName;
     private final String lastName;
-    private final int age = 10 + ((int) (Math.random() * 50));
+    private final String age;
 
     public User(String firstName, String lastName) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
+        this.age = String.valueOf((10 + ((int) (Math.random() * 50))));
+    }
+
+    public User(String firstName, String lastName, String age) {
+        super();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
     }
 
     public User() {
         super();
         this.firstName = "Mike";
         this.lastName = "Sally";
+        this.age = String.valueOf((10 + ((int) (Math.random() * 50))));
     }
 
     @Override

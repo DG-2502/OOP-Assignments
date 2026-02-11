@@ -2,25 +2,30 @@ package service;
 
 import domain.publications.Publication;
 import repository.PublicationRepository;
+import repository.Repository;
 import util.Pair;
 
 import java.util.ArrayList;
 
 public abstract class UserService {
     private int chosenPubId;
-    protected final PublicationRepository publications;
-    protected final IssueService issueService;
+    protected final PublicationsService publicationsService;
+    protected final IssuesService issuesService;
 
-    public UserService(PublicationRepository publications, IssueService issueService) {
-        this.publications = publications;
-        this.issueService = issueService;
+    public UserService(PublicationsService publicationsService, IssuesService issuesService) {
+        this.issuesService = issuesService;
+        this.publicationsService = publicationsService;
     }
 
-    public PublicationRepository getPublicationRepository() {
-        return publications;
+    public Repository<Publication> getPublicationRepository() {
+        return publicationsService.getPublicationRepository();
     }
 
-    public Pair getPublication(String query, PublicationRepository publications) {
+    public PublicationsService getPublicationService() {
+        return publicationsService;
+    }
+
+    public Pair getPublication(String query, Repository<Publication> publications) {
         try {
             int index = Integer.parseInt(query);
             if (publications.hasId(index)) {

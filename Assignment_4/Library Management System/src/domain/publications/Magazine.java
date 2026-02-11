@@ -4,7 +4,9 @@ public class Magazine extends Publication{
     public Magazine(String author, String title) {
         super(author, title);
     }
-
+    public Magazine() {
+        super("Magazine", "Magazine");
+    }
     public Magazine(int year, String author, String title) {
         super(year, author, title);
     }
@@ -12,8 +14,8 @@ public class Magazine extends Publication{
         super(year, author, title, id);
     }
 
-    public Magazine() {
-        super("Magazine", "Magazine");
+    public Magazine(String title, String author, String year, String amount) {
+        super(title, author, year, amount);
     }
 
     @Override

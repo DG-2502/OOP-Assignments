@@ -2,8 +2,10 @@ package domain.user;
 
 import domain.publications.Publication;
 import repository.PublicationRepository;
+import repository.Repository;
 
 public class Reader extends User {
+//    private final Repository
     private final PublicationRepository publications;
 
     public Reader() {
@@ -18,6 +20,11 @@ public class Reader extends User {
 
     public Reader(String firstName, String lastName) {
         super(firstName, lastName);
+        this.publications = new PublicationRepository();
+    }
+
+    public Reader(String firstName, String lastName, String age) {
+        super(firstName, lastName, age);
         this.publications = new PublicationRepository();
     }
 

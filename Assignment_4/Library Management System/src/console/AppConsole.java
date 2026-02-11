@@ -6,11 +6,11 @@ import domain.publications.Magazine;
 import domain.user.Librarian;
 import domain.user.Reader;
 import domain.user.User;
-import repository.PublicationRepository;
 import repository.Repository;
 import repository.UserRepository;
-import service.IssueService;
+import service.IssuesService;
 import service.LibrarianService;
+import service.PublicationsService;
 import service.ReaderService;
 
 import java.util.ArrayList;
@@ -20,22 +20,21 @@ public class AppConsole extends BasicConsole {
     private boolean loginOption = false;
     private int chosenUserID;
     private final Repository<User> userRepository;
-    //    private Repository<Publication> publicationRepository;
-    private final PublicationRepository publicationRepository;
-    private final IssueService issueService;
+    private final PublicationsService publicationsService;
+    private final IssuesService issuesService;
 
     public AppConsole() {
         this.userRepository = new UserRepository();
-        this.publicationRepository = new PublicationRepository();
-        this.issueService = new IssueService();
-        publicationRepository.add(new Book("R.J. Darkwater", "A Culinary History of the Moon"));
-        publicationRepository.add(new Book("R.J. Darkwater", "A"));
-        publicationRepository.add(new Book("R.J. Darkwater", "A"));
-        publicationRepository.add(new Book("Marisol Vega", "The City Where All Clocks Are Wrong"));
-        publicationRepository.add(new Disc("Dr. Octavia Vance", "On the Taxonomy of Ghosts"));
-        publicationRepository.add(new Disc("L.B. Merriweather", "A Compendium of Forgotten Tuesdays"));
-        publicationRepository.add(new Magazine("Professor Alistair Finch", "The Last Postal Clerk of Prague"));
-        publicationRepository.add(new Magazine("K.J. Thorne", "The Mosaic of Salt and Iron"));
+        this.publicationsService = new PublicationsService();
+        this.issuesService = new IssuesService();
+        publicationsService.add(new Book("R.J. Darkwater", "A Culinary History of the Moon"));
+        publicationsService.add(new Book("R.J. Darkwater", "A"));
+        publicationsService.add(new Book("R.J. Darkwater", "A"));
+        publicationsService.add(new Book("Marisol Vega", "The City Where All Clocks Are Wrong"));
+        publicationsService.add(new Disc("Dr. Octavia Vance", "On the Taxonomy of Ghosts"));
+        publicationsService.add(new Disc("L.B. Merriweather", "A Compendium of Forgotten Tuesdays"));
+        publicationsService.add(new Magazine("Professor Alistair Finch", "The Last Postal Clerk of Prague"));
+        publicationsService.add(new Magazine("K.J. Thorne", "The Mosaic of Salt and Iron"));
     }
 
     @Override
@@ -110,9 +109,9 @@ public class AppConsole extends BasicConsole {
         if (userConsole == null) {
             User user = userRepository.getByID(chosenUserID);
             if (user instanceof Reader) {
-                this.userConsole = new ReaderConsole(new ReaderService((Reader) user, publicationRepository, issueService), new LibrarianService(publicationRepository, userRepository, issueService));
+                this.userConsole = new ReaderConsole(new ReaderService((Reader) user, publicationsService, issuesService), new LibrarianService(publicationsService, userRepository, issuesService));
             } else if (user instanceof Librarian) {
-                this.userConsole = new LibrarianConsole(new LibrarianService(publicationRepository, userRepository, issueService));
+                this.userConsole = new LibrarianConsole(new LibrarianService(publicationsService, userRepository, issuesService));
             } else {
                 System.out.println("Please implement console and service your new class at first");
             }

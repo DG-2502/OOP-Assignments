@@ -30,6 +30,13 @@ public abstract class Publication extends Entity {
         this.title = title;
         this.amount = 1;
     }
+    public Publication(String title, String author, String year, String amount) {
+        super();
+        this.title = title;
+        this.author = author;
+        this.year = Integer.parseInt(year);
+        this.amount = Integer.parseInt(amount);
+    }
 
     public String getTitle() {
         return title;
