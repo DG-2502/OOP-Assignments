@@ -11,13 +11,13 @@ public class IssueService {
         this.issueRepository = new IssueRepository();
     }
 
-    public void createIssue(int dayTaken, int dayPlannedReturn, int readerId, int publicationId) {
-        Issue issue = new Issue(dayTaken, dayPlannedReturn, readerId, publicationId);
+    public void createIssue(String dateTaken, String datePlannedReturn, int readerId, int publicationId) {
+        Issue issue = new Issue(dateTaken, datePlannedReturn, readerId, publicationId);
         issueRepository.add(issue);
     }
 
-    public void close(int day, int readerId, int pubId) {
-        issueRepository.getAll().stream().filter(issue -> issue.getReaderId() == readerId & issue.getPubId() == pubId).findFirst().get().close(day);
+    public void close(String dateReturned, int readerId, int pubId) {
+        issueRepository.getAll().stream().filter(issue -> issue.getReaderId() == readerId & issue.getPubId() == pubId).findFirst().get().close(dateReturned);
     }
 
     public Repository<Issue> getIssueRepository() {

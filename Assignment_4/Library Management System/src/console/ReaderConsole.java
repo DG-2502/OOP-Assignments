@@ -74,7 +74,7 @@ public class ReaderConsole extends UserConsole {
             response = readerService.takePublication();
             System.out.println(response.value());
             if (response.key()) {
-                readerService.makeIssue(day, readInt(1, 28));
+                readerService.makeIssue(myDate.getDate(), myDate.inDays(readInt(1, 28)));
                 System.out.println("Successfully taken the publication!");
             }
             takeOption = false;
@@ -86,13 +86,14 @@ public class ReaderConsole extends UserConsole {
                 return;
             }
 
-            readerService.returnPublication(day);
+            readerService.returnPublication(myDate.getDate());
             returnOption = false;
             System.out.println("Successfully returned the publication!");
         }
         if (nextDayOption) {
-            day += 1;
+            myDate.nextDay();
             System.out.println("The next day has come");
+            nextDayOption = false;
         }
     }
 }

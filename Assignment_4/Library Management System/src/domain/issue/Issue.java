@@ -6,21 +6,21 @@ public class Issue extends Entity {
     private final int readerId;
     private final int pubId;
     private boolean closed = false;
-    private final int dayTaken;
-    private final int dayPlannedReturn;
-    private int dayReturned;
+    private final String dateTaken;
+    private final String datePlannedReturn;
+    private String dateReturned;
 
-    public Issue(int dayTaken, int dayPlannedReturn, int readerId, int pubId) {
+    public Issue(String dateTaken, String datePlannedReturn, int readerId, int pubId) {
         super();
-        this.dayTaken = dayTaken;
-        this.dayPlannedReturn = dayPlannedReturn;
+        this.dateTaken = dateTaken;
+        this.datePlannedReturn = datePlannedReturn;
         this.readerId = readerId;
         this.pubId = pubId;
     }
 
     @Override
     public String toString() {
-        return super.toString() + "\nReader ID: " + readerId + "\nPublication ID: " + pubId + "\nDay taken: " + dayTaken + "\nPlanned return day " + (dayTaken + dayPlannedReturn) + "\n" + (closed ? "day returned " + dayReturned + " closed" : "open");
+        return super.toString() + "\nReader ID: " + readerId + "\nPublication ID: " + pubId + "\nTaken on: " + dateTaken + "\nShould return on: " + (datePlannedReturn) + "\n" + (closed ? "Returned on: " + dateReturned + "\nStatus: CLOSED" : "Status: OPEN") + "\n----------------------------";
     }
 
     public int getPubId() {
@@ -31,8 +31,8 @@ public class Issue extends Entity {
         return readerId;
     }
 
-    public void close(int day) {
-        this.dayReturned = day;
+    public void close(String dateReturned) {
+        this.dateReturned = dateReturned;
         this.closed = true;
     }
 }

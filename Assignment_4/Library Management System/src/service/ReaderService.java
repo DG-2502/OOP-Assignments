@@ -29,14 +29,14 @@ public class ReaderService extends UserService {
         return new Pair(false, "Could not issue a publication, no copy available at the moment!");
     }
 
-    public void makeIssue(int dayTaken, int dayPlannedReturn) {
-        issueService.createIssue(dayTaken, dayPlannedReturn, reader.getId(), getChosenPubId());
+    public void makeIssue(String dateTaken, String datePlannedReturn) {
+        issueService.createIssue(dateTaken, datePlannedReturn, reader.getId(), getChosenPubId());
     }
 
-    public void returnPublication(int day) {
+    public void returnPublication(String date) {
         Publication taken = reader.getPublications().getByID(getChosenPubId());
         publications.add(taken);
         reader.getPublications().remove(getChosenPubId());
-        issueService.close(day, reader.getId(), getChosenPubId());
+        issueService.close(date, reader.getId(), getChosenPubId());
     }
 }
