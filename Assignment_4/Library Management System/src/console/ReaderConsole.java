@@ -12,7 +12,6 @@ public class ReaderConsole extends UserConsole {
     private boolean takeOption = false;
     private boolean returnOption = false;
     private boolean nextDayOption = false;
-    private static int day = 0;
 
     public ReaderConsole(ReaderService readerService, LibrarianService librarianService) {
         this.readerService = readerService;

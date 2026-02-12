@@ -3,6 +3,7 @@ package service;
 import domain.user.Reader;
 import domain.publications.Publication;
 import repository.PublicationRepository;
+import repository.Repository;
 import util.Pair;
 
 public class ReaderService extends UserService {
@@ -13,7 +14,7 @@ public class ReaderService extends UserService {
         this.reader = reader;
     }
 
-    public PublicationRepository getReaderPublications() {
+    public Repository<Publication> getReaderPublications() {
         return reader.getPublications();
     }
 

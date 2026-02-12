@@ -13,8 +13,8 @@ public class IssueRepository implements Repository<Issue> {
     }
 
     @Override
-    public void remove(int i) {
-        issues.remove(i);
+    public void remove(int id) {
+        issues.remove(getByID(id));
     }
 
 //    @Override
@@ -24,7 +24,7 @@ public class IssueRepository implements Repository<Issue> {
 
     @Override
     public boolean hasId(int id) {
-        return false;
+        return issues.stream().anyMatch(issue -> issue.getId() == id);
     }
 
 //    @Override

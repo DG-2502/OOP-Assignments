@@ -7,11 +7,7 @@ import domain.user.Librarian;
 import domain.user.Reader;
 import domain.user.User;
 import repository.Repository;
-import repository.UserRepository;
-import service.IssuesService;
-import service.LibrarianService;
-import service.PublicationsService;
-import service.ReaderService;
+import service.*;
 
 import java.util.ArrayList;
 
@@ -19,12 +15,12 @@ public class AppConsole extends BasicConsole {
     private Console userConsole;
     private boolean loginOption = false;
     private int chosenUserID;
-    private final Repository<User> userRepository;
+    private final UsersService usersService;
     private final PublicationsService publicationsService;
     private final IssuesService issuesService;
 
     public AppConsole() {
-        this.userRepository = new UserRepository();
+        this.usersService = new UsersService();
         this.publicationsService = new PublicationsService();
         this.issuesService = new IssuesService();
         publicationsService.add(new Book("R.J. Darkwater", "A Culinary History of the Moon"));
@@ -78,6 +74,7 @@ public class AppConsole extends BasicConsole {
     }
 
     private boolean getUser(String name) {
+        Repository<User> userRepository = usersService.getUserRepository();
         try {
             int index = Integer.parseInt(name);
             if (userRepository.hasId(index)) {
@@ -107,11 +104,11 @@ public class AppConsole extends BasicConsole {
 
     private void login() {
         if (userConsole == null) {
-            User user = userRepository.getByID(chosenUserID);
+            User user = usersService.getUserRepository().getByID(chosenUserID);
             if (user instanceof Reader) {
-                this.userConsole = new ReaderConsole(new ReaderService((Reader) user, publicationsService, issuesService), new LibrarianService(publicationsService, userRepository, issuesService));
+                this.userConsole = new ReaderConsole(new ReaderService((Reader) user, publicationsService, issuesService), new LibrarianService(publicationsService, usersService, issuesService));
             } else if (user instanceof Librarian) {
-                this.userConsole = new LibrarianConsole(new LibrarianService(publicationsService, userRepository, issuesService));
+                this.userConsole = new LibrarianConsole(new LibrarianService(publicationsService, usersService, issuesService));
             } else {
                 System.out.println("Please implement console and service your new class at first");
             }

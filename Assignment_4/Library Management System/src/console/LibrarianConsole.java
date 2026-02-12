@@ -1,16 +1,15 @@
 package console;
 
 import service.LibrarianService;
-
-import java.util.ArrayList;
+import util.Pair;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LibrarianConsole extends UserConsole {
     private final LibrarianService librarianService;
     private boolean listOption = false;
     private boolean registerOption = false;
+    private boolean deleteOption = false;
 
     public LibrarianConsole(LibrarianService librarianService) {
         this.librarianService = librarianService;
@@ -30,7 +29,8 @@ public class LibrarianConsole extends UserConsole {
             return listOption = true;
         }
         if (command.equals("delete")) {
-            return librarianService.delete(option);
+            query = option.toLowerCase();
+            return deleteOption = true;
         }
         System.out.println("Could not find the command, type 'help' to see the list of possible commands");
         return false;
@@ -77,6 +77,11 @@ public class LibrarianConsole extends UserConsole {
             System.out.println("Could not register a " + query);
             System.out.println("Possible values are: reader, librarian, publication");
         }
+        if (deleteOption) {
+            Pair response = librarianService.delete(query);
+            System.out.println(response.value());
+            deleteOption = false;
+        }
     }
 
     private String[] getUserInfo() {
@@ -86,7 +91,6 @@ public class LibrarianConsole extends UserConsole {
         String last = readName(false);
         System.out.print("Age: ");
         String age = String.valueOf(readInt(0, 1<<7));
-//        return (name + " " + last + " " + age).split(" ");
         return new String[]{name, last, age};
     }
 

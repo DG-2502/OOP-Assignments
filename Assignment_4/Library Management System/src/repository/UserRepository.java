@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class UserRepository implements Repository<User> {
-    private final ArrayList<User> users = new ArrayList<User>(){{
+    private final ArrayList<User> users = new ArrayList<>(){{
         add(new Reader("Marley", "Buck"));
         add(new Reader("Carley", "Robinson"));
         add(new Reader("Carley", "Robinson"));

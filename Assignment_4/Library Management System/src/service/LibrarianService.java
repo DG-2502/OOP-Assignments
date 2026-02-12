@@ -8,17 +8,18 @@ import domain.user.Librarian;
 import domain.user.Reader;
 import domain.user.User;
 import repository.Repository;
+import util.Pair;
 
 public class LibrarianService extends UserService {
-    private final Repository<User> userRepository;
+    private final UsersService usersService;
 
-    public LibrarianService(PublicationsService publicationsService, Repository<User> userRepository, IssuesService issuesService) {
+    public LibrarianService(PublicationsService publicationsService, UsersService usersService, IssuesService issuesService) {
         super(publicationsService, issuesService);
-        this.userRepository = userRepository;
+        this.usersService = usersService;
     }
 
     public Repository<User> getUserRepository() {
-        return userRepository;
+        return usersService.getUserRepository();
     }
 
     public Repository<Issue> getIssueRepository() {
@@ -27,10 +28,10 @@ public class LibrarianService extends UserService {
 
     public boolean register(String[] info, String option) {
         if (option.equals("reader")) {
-            userRepository.add(new Reader(info[0], info[1], info[2]));
+            usersService.add(new Reader(info[0], info[1], info[2]));
             return true;
         } else if (option.equals("librarian")) {
-            userRepository.add(new Librarian(info[0], info[1], info[2]));
+            usersService.add(new Librarian(info[0], info[1], info[2]));
             return true;
         } else if (option.equals("book")) {
             publicationsService.add(new Book(info[0], info[1], info[2], info[3], info[4]));
@@ -45,20 +46,27 @@ public class LibrarianService extends UserService {
         return false;
     }
 
-    public boolean delete(String option) {
+    public Pair delete(String option) {
         try {
             int id = Integer.parseInt(option);
-            if (userRepository.hasId(id)) {
-                userRepository.remove(id);
-                return true;
+            Pair pair = usersService.removeById(id);
+            if (pair.key()) {
+                return pair;
             }
             if (publicationsService.removeById(id)) {
-                return true;
+                return new Pair(true, "Successfully removed a publication with ID: " + option);
             }
-            System.out.println("Could not find any entity with this ID: " + id);
+            pair = issuesService.removeById(id);
+            if (pair.key()) {
+                return pair;
+            }
+            return new Pair(false, "Could not find any entity with this ID: " + id);
         } catch (NumberFormatException e) {
-            System.out.println("Deleting by name is not implemented yet");
+            return new Pair(false, "Deleting by name is not implemented yet");
         }
-        return false;
+    }
+
+    public Librarian getLib() {
+        return usersService.getLibrarian();
     }
 }

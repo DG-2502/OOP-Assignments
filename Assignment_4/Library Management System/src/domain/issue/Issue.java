@@ -31,6 +31,10 @@ public class Issue extends Entity {
         return readerId;
     }
 
+    public boolean isClosed() {
+        return closed;
+    }
+
     public void close(String dateReturned) {
         this.dateReturned = dateReturned;
         this.closed = true;

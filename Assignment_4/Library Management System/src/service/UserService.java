@@ -1,7 +1,6 @@
 package service;
 
 import domain.publications.Publication;
-import repository.PublicationRepository;
 import repository.Repository;
 import util.Pair;
 
@@ -19,10 +18,6 @@ public abstract class UserService {
 
     public Repository<Publication> getPublicationRepository() {
         return publicationsService.getPublicationRepository();
-    }
-
-    public PublicationsService getPublicationService() {
-        return publicationsService;
     }
 
     public Pair getPublication(String query, Repository<Publication> publications) {

@@ -5,15 +5,14 @@ import repository.PublicationRepository;
 import repository.Repository;
 
 public class Reader extends User {
-//    private final Repository
-    private final PublicationRepository publications;
+    private final Repository<Publication> publications;
 
     public Reader() {
         super();
         this.publications = new PublicationRepository();
     }
 
-    public Reader(String firstName, String lastName, PublicationRepository takenPublications) {
+    public Reader(String firstName, String lastName, Repository<Publication> takenPublications) {
         super(firstName, lastName);
         this.publications = takenPublications;
     }
@@ -40,7 +39,7 @@ public class Reader extends User {
     public void addPublication(Publication publication) {
         publications.add(publication);
     }
-    public PublicationRepository getPublications() {
+    public Repository<Publication> getPublications() {
         return publications;
     }
 }
