@@ -3,9 +3,9 @@ package domain.user;
 import domain.Entity;
 
 abstract public class User extends Entity {
-    private final String firstName;
-    private final String lastName;
-    private final String age;
+    private String firstName;
+    private String lastName;
+    private String age;
     private final UserType userType;
 
     public User(String firstName, String lastName, String typeName) {
@@ -48,6 +48,21 @@ abstract public class User extends Entity {
     @Override
     public String getType() {
         return userType.name();
+    }
+
+    public void update(String[] info) {
+        String newName = info[0];
+        if (!newName.isEmpty()) {
+            this.firstName = newName;
+        }
+        String newLast = info[1];
+        if (!newLast.isEmpty()) {
+            this.lastName = newLast;
+        }
+        String newAge = info[2];
+        if (!newAge.isEmpty()) {
+            this.age = newAge;
+        }
     }
 
     public static User createByType(UserType type, String[] info) {

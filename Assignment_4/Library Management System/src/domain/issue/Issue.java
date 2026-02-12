@@ -24,6 +24,11 @@ public class Issue extends Entity {
     }
 
     @Override
+    public void update(String[] info) {
+
+    }
+
+    @Override
     public String getType() {
         return "";
     }

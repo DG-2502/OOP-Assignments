@@ -1,34 +1,30 @@
 package domain.publications;
 
 public class Book extends Publication {
-    private final int pages;
+    private String pages;
 
     public Book(String author, String title) {
         super(author, title, "book");
-        this.pages = 20 + ((int) (Math.random() * 200));
+        this.pages = String.valueOf(20 + ((int) (Math.random() * 200)));
     }
 
     public Book() {
         super("Book", "Book", "book");
-        this.pages = 100;
+        this.pages = "100";
     }
 
-    public Book(int year, String author, String title, int pages) {
+    public Book(String year, String author, String title, String pages) {
         super(year, author, title, "book");
         this.pages = pages;
     }
-    private Book(int year, String author, String title, int pages, int id) {
+    private Book(String year, String author, String title, String pages, int id) {
         super(year, author, title, id, "book");
         this.pages = pages;
     }
 
     public Book(String title, String author, String year, String amount, String pages) {
         super(title, author, year, amount, "book");
-        this.pages = Integer.parseInt(pages);
-    }
-
-    public int getPages() {
-        return pages;
+        this.pages = pages;
     }
 
     @Override
@@ -51,5 +47,14 @@ public class Book extends Publication {
 
     public static Publication create(String[] info) {
         return new Book(info[0], info[1], info[2], info[3], info[4]);
+    }
+
+    @Override
+    public void update(String[] info) {
+        super.update(info);
+        String newPages = info[4];
+        if (!newPages.isEmpty()) {
+            this.pages = newPages;
+        }
     }
 }

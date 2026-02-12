@@ -1,6 +1,5 @@
 package service;
 
-import domain.user.Librarian;
 import domain.user.Reader;
 import domain.user.User;
 import repository.Repository;
@@ -9,7 +8,6 @@ import util.Pair;
 
 public class UsersService {
     private final Repository<User> userRepository;
-
 
     public UsersService() {
         this.userRepository = new UserRepository();
@@ -36,9 +34,5 @@ public class UsersService {
 
     public Repository<User> getUserRepository() {
         return userRepository;
-    }
-
-    public Librarian getLibrarian() {
-        return ((Librarian) userRepository.getAll().stream().filter(user -> user instanceof Librarian).findAny().get());
     }
 }

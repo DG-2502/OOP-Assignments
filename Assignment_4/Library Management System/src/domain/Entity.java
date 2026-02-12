@@ -19,5 +19,7 @@ public abstract class Entity {
     public String toString() {
         return "ID: " + id + " ";
     }
+
+    public abstract void update(String[] info);
     public abstract String getType();
 }

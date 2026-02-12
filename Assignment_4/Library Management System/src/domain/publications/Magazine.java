@@ -7,10 +7,10 @@ public class Magazine extends Publication{
     public Magazine() {
         super("Magazine", "Magazine", "magazine");
     }
-    public Magazine(int year, String author, String title) {
+    public Magazine(String year, String author, String title) {
         super(year, author, title, "magazine");
     }
-    private Magazine(int year, String author, String title, int id) {
+    private Magazine(String year, String author, String title, int id) {
         super(year, author, title, id, "magazine");
     }
 
@@ -33,5 +33,10 @@ public class Magazine extends Publication{
 
     public static Publication create(String[] info) {
         return new Magazine(info[0], info[1], info[2], info[3]);
+    }
+
+    @Override
+    public void update(String[] info) {
+        super.update(info);
     }
 }

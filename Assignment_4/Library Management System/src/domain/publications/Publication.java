@@ -3,22 +3,22 @@ package domain.publications;
 import domain.Entity;
 
 public abstract class Publication extends Entity {
-    private final int year;
-    private final String author;
-    private final String title;
+    private String year;
+    private String author;
+    private String title;
     private int amount;
     private final PubType pubType;
 
     public Publication(String author, String title, String type){
         super();
-        this.year = 1900 + ((int) (Math.random() * 126));
+        this.year = String.valueOf(1900 + ((int) (Math.random() * 126)));
         this.author = author;
         this.title = title;
         this.amount = ((int) (Math.random() * 5));
         this.pubType = PubType.valueOf(type);
     }
 
-    public Publication(int year, String author, String title, String type) {
+    public Publication(String year, String author, String title, String type) {
         super();
         this.year = year;
         this.author = author;
@@ -27,7 +27,7 @@ public abstract class Publication extends Entity {
         this.pubType = PubType.valueOf(type);
 
     }
-    public Publication(int year, String author, String title, int id, String type) {
+    public Publication(String year, String author, String title, int id, String type) {
         super(id);
         this.year = year;
         this.author = author;
@@ -40,7 +40,7 @@ public abstract class Publication extends Entity {
         super();
         this.title = title;
         this.author = author;
-        this.year = Integer.parseInt(year);
+        this.year = year;
         this.amount = Integer.parseInt(amount);
         this.pubType = PubType.valueOf(type);
     }
@@ -49,7 +49,7 @@ public abstract class Publication extends Entity {
         return title;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
@@ -84,7 +84,27 @@ public abstract class Publication extends Entity {
 
     @Override
     public String getType() {
-        return "";
+        return pubType.name();
+    }
+
+    @Override
+    public void update(String[] info) {
+        String newTitle = info[0];
+        if (!newTitle.isEmpty()) {
+            this.title = newTitle;
+        }
+        String newAuthor = info[1];
+        if (!newAuthor.isEmpty()) {
+            this.author = newAuthor;
+        }
+        String newYear = info[2];
+        if (!newYear.isEmpty()) {
+            this.year = newYear;
+        }
+        String newAmount = info[3];
+        if (!newAmount.isEmpty()) {
+            this.amount = Integer.parseInt(newAmount);
+        }
     }
 
     public static Publication createByType(PubType type, String[] info) {

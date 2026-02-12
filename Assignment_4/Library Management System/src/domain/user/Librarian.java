@@ -22,4 +22,9 @@ public class Librarian extends User {
     public static User create(String[] info) {
         return new Librarian(info[0], info[1], info[2]);
     }
+
+    @Override
+    public void update(String[] info) {
+        super.update(info);
+    }
 }
