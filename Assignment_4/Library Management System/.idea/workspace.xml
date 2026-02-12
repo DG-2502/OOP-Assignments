@@ -2,22 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33077e8c-f9c2-46ca-9ded-8f488cd3c3d2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/service/UsersService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Assignment_3/Task_2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Assignment_3/Task_2/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Assignment_3/Task_7/src/factory/ProgrammingCourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Assignment_3/Task_7/src/factory/ProgrammingCourse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/console/AppConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/console/AppConsole.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/console/LibrarianConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/console/LibrarianConsole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/console/ReaderConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/console/ReaderConsole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain/issue/Issue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/issue/Issue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/publications/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/publications/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/publications/Disc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/publications/Disc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/publications/Magazine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/publications/Magazine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/publications/Publication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/publications/Publication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/user/Librarian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/user/Librarian.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain/user/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/user/Reader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repository/IssueRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/IssueRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/IssuesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/IssuesService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/user/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/LibrarianService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/LibrarianService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/ReaderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/ReaderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,9 +26,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -105,6 +104,7 @@
       <workItem from="1770809177030" duration="16000" />
       <workItem from="1770819075745" duration="8972000" />
       <workItem from="1770885492064" duration="6689000" />
+      <workItem from="1770905764032" duration="9826000" />
     </task>
     <servers />
   </component>

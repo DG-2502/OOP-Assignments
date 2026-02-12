@@ -1,5 +1,8 @@
 package console;
 
+import domain.Entity;
+import domain.publications.Publication;
+import domain.user.User;
 import service.LibrarianService;
 import util.Pair;
 import java.util.Arrays;
@@ -10,6 +13,7 @@ public class LibrarianConsole extends UserConsole {
     private boolean listOption = false;
     private boolean registerOption = false;
     private boolean deleteOption = false;
+    private boolean updateOption = false;
 
     public LibrarianConsole(LibrarianService librarianService) {
         this.librarianService = librarianService;
@@ -32,6 +36,10 @@ public class LibrarianConsole extends UserConsole {
             query = option.toLowerCase();
             return deleteOption = true;
         }
+        if (command.equals("update")) {
+            query = option;
+            return updateOption = true;
+        }
         System.out.println("Could not find the command, type 'help' to see the list of possible commands");
         return false;
     }
@@ -40,7 +48,7 @@ public class LibrarianConsole extends UserConsole {
     public void executeCommands() {
         super.executeCommands();
         if (getHelpOption()) {
-            System.out.println("register reader/librarian/publication - Register something ore somebody");
+            System.out.println("register reader/librarian/publication - Register something or somebody");
             System.out.println("list - show users, publications, issues of the library");
             System.out.println("delete index/query - delete something or someone from the library");
             setHelpOption(false);
@@ -64,10 +72,9 @@ public class LibrarianConsole extends UserConsole {
         if (registerOption) {
             registerOption = false;
             String[] info = null;
-            if (query.equals("reader") | query.equals("librarian")) {
-                info = getUserInfo();
-            }
-            else if (query.equals("publication")) {
+            if (query.equals("user")) {
+                info = getUserInfo(false);
+            } else if (query.equals("publication")) {
                 info = getPublicationInfo();
             }
             if (librarianService.register(info, query)) {
@@ -75,36 +82,58 @@ public class LibrarianConsole extends UserConsole {
                 return;
             }
             System.out.println("Could not register a " + query);
-            System.out.println("Possible values are: reader, librarian, publication");
+            System.out.println("Possible values are: user, publication");
         }
         if (deleteOption) {
             Pair response = librarianService.delete(query);
             System.out.println(response.value());
             deleteOption = false;
         }
+        if (updateOption) {
+            updateOption = false;
+            try {
+                update(Integer.parseInt(query));
+            } catch (NumberFormatException e) {
+                System.out.println("Update command only works with indexes!");
+            }
+        }
     }
 
-    private String[] getUserInfo() {
+    private String[] getUserInfo(boolean update) {
+        int id;
+        if (update) {
+            id = User.UserType.valueOf(query).ordinal();
+        } else {
+            System.out.println("Please choose which user you want to register");
+            for (User.UserType userType : User.UserType.values()){
+                System.out.println(userType.ordinal() + ": " + userType.name().toUpperCase());
+            }
+            id = readInt(0, User.UserType.values().length - 1);
+        }
+        query = User.UserType.values()[id].name();
         System.out.print("Name: ");
         String name = readName(false);
         System.out.print("Last name: ");
         String last = readName(false);
         System.out.print("Age: ");
-        String age = String.valueOf(readInt(0, 1<<7));
+        String age = String.valueOf(readInt(0, 1 << 7));
         return new String[]{name, last, age};
     }
 
     private String[] getPublicationInfo() {
-        System.out.println("Please choose which publication you want to register\n0: Book\n1: Disc\n2: Magazine");
-        int id = readInt(0, 2);
+        System.out.println("Please choose which publication you want to register");
+        for (Publication.PubType pubType : Publication.PubType.values()){
+            System.out.println(pubType.ordinal() + ": " + pubType.name().toUpperCase());
+        }
+        int id = readInt(0, Publication.PubType.values().length - 1);
         System.out.print("Title: ");
         String title = readName(true);
         System.out.print("Author: ");
         String author = readName(true);
         System.out.print("Year: ");
-        String year  = String.valueOf(readInt(0, 2026));
+        String year = String.valueOf(readInt(0, 2026));
         System.out.print("Amount: ");
-        String amount = String.valueOf(readInt(0, 1<<16));
+        String amount = String.valueOf(readInt(0, 1 << 16));
         String[] info = {title, author, year, amount};
         String[] result = new String[0];
         result = switch (id) {
@@ -115,20 +144,29 @@ public class LibrarianConsole extends UserConsole {
         };
         return result;
     }
+
     private String[] getBookInfo() {
         query = "book";
         System.out.print("Pages: ");
-        String pages = String.valueOf(readInt(1, 1<<16));
+        String pages = String.valueOf(readInt(1, 1 << 16));
         return new String[]{pages};
     }
+
     private String[] getDiscInfo() {
         query = "disc";
         System.out.print("Narrator: ");
         String narrator = readName(true);
         return new String[]{narrator};
     }
+
     private String[] getMagazineInfo() {
         query = "magazine";
         return new String[]{};
+    }
+
+    private void update(int id) {
+        Entity entity = librarianService.getByID(id);
+        query = entity.getType();
+        System.out.println(entity.getType());
     }
 }

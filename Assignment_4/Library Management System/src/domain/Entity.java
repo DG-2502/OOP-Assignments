@@ -19,4 +19,5 @@ public abstract class Entity {
     public String toString() {
         return "ID: " + id + " ";
     }
+    public abstract String getType();
 }

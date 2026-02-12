@@ -23,6 +23,11 @@ public class Issue extends Entity {
         return super.toString() + "\nReader ID: " + readerId + "\nPublication ID: " + pubId + "\nTaken on: " + dateTaken + "\nShould return on: " + (datePlannedReturn) + "\n" + (closed ? "Returned on: " + dateReturned + "\nStatus: CLOSED" : "Status: OPEN") + "\n----------------------------";
     }
 
+    @Override
+    public String getType() {
+        return "";
+    }
+
     public int getPubId() {
         return pubId;
     }

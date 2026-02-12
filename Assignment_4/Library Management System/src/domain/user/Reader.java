@@ -8,22 +8,22 @@ public class Reader extends User {
     private final Repository<Publication> publications;
 
     public Reader() {
-        super();
+        super("reader");
         this.publications = new PublicationRepository();
     }
 
     public Reader(String firstName, String lastName, Repository<Publication> takenPublications) {
-        super(firstName, lastName);
+        super(firstName, lastName, "reader");
         this.publications = takenPublications;
     }
 
     public Reader(String firstName, String lastName) {
-        super(firstName, lastName);
+        super(firstName, lastName, "reader");
         this.publications = new PublicationRepository();
     }
 
     public Reader(String firstName, String lastName, String age) {
-        super(firstName, lastName, age);
+        super(firstName, lastName, age, "reader");
         this.publications = new PublicationRepository();
     }
 
@@ -41,5 +41,9 @@ public class Reader extends User {
     }
     public Repository<Publication> getPublications() {
         return publications;
+    }
+
+    public static User create(String[] info) {
+        return new Reader(info[0], info[1], info[2]);
     }
 }

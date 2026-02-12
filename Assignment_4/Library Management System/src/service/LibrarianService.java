@@ -1,14 +1,13 @@
 package service;
 
+import domain.Entity;
 import domain.issue.Issue;
-import domain.publications.Book;
-import domain.publications.Disc;
-import domain.publications.Magazine;
-import domain.user.Librarian;
-import domain.user.Reader;
+import domain.publications.Publication;
 import domain.user.User;
 import repository.Repository;
 import util.Pair;
+
+import java.util.Arrays;
 
 public class LibrarianService extends UserService {
     private final UsersService usersService;
@@ -27,20 +26,12 @@ public class LibrarianService extends UserService {
     }
 
     public boolean register(String[] info, String option) {
-        if (option.equals("reader")) {
-            usersService.add(new Reader(info[0], info[1], info[2]));
+        if (Arrays.stream(User.UserType.values()).anyMatch(type -> type.name().equals(option))) {
+            usersService.add(User.createByType(User.UserType.valueOf(option), info));
             return true;
-        } else if (option.equals("librarian")) {
-            usersService.add(new Librarian(info[0], info[1], info[2]));
-            return true;
-        } else if (option.equals("book")) {
-            publicationsService.add(new Book(info[0], info[1], info[2], info[3], info[4]));
-            return true;
-        } else if (option.equals("disc")) {
-            publicationsService.add(new Disc(info[0], info[1], info[2], info[3], info[4]));
-            return true;
-        } else if (option.equals("magazine")) {
-            publicationsService.add(new Magazine(info[0], info[1], info[2], info[3]));
+        }
+        else if (Arrays.stream(Publication.PubType.values()).anyMatch(pubType -> pubType.name().equals(option))) {
+            publicationsService.add(Publication.createByType(Publication.PubType.valueOf(option), info));
             return true;
         }
         return false;
@@ -66,7 +57,13 @@ public class LibrarianService extends UserService {
         }
     }
 
-    public Librarian getLib() {
-        return usersService.getLibrarian();
+    public Entity getByID(int id) {
+        if (getUserRepository().hasId(id)) {
+            return getUserRepository().getByID(id);
+        }
+        if (getPublicationRepository().hasId(id)) {
+            return getPublicationRepository().getByID(id);
+        }
+        return null;
     }
 }
