@@ -17,22 +17,10 @@ public class IssueRepository implements Repository<Issue> {
         issues.remove(getByID(id));
     }
 
-//    @Override
-//    public boolean has(Issue issue) {
-//        return issues.contains(issue);
-//    }
-
     @Override
     public boolean hasId(int id) {
         return issues.stream().anyMatch(issue -> issue.getId() == id);
     }
-
-//    @Override
-//    public void print() {
-//        for (Issue issue : issues) {
-//            System.out.println(issue);
-//        }
-//    }
 
     @Override
     public ArrayList<Issue> getAll() {

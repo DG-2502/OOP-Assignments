@@ -14,22 +14,10 @@ public class PublicationRepository implements Repository<Publication> {
         publications.add(publication);
     }
 
-//    @Override
-//    public void print() {
-//        for (Publication publication : publications) {
-//            System.out.println(publication);
-//        }
-//    }
-
     @Override
     public void remove(int id) {
         publications.remove(getByID(id));
     }
-
-//    @Override
-//    public boolean has(Publication publication) {
-//        return publications.stream().anyMatch(publication1 -> publication1.compare(publication));
-//    }
 
     @Override
     public boolean hasId(int id) {

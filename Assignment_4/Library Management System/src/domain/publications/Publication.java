@@ -9,7 +9,7 @@ public abstract class Publication extends Entity {
     private int amount;
     private final PubType pubType;
 
-    public Publication(String author, String title, String type){
+    public Publication(String author, String title, String type) {
         super();
         this.year = String.valueOf(1900 + ((int) (Math.random() * 126)));
         this.author = author;
@@ -25,8 +25,8 @@ public abstract class Publication extends Entity {
         this.title = title;
         this.amount = 1;
         this.pubType = PubType.valueOf(type);
-
     }
+
     public Publication(String year, String author, String title, int id, String type) {
         super(id);
         this.year = year;
@@ -34,8 +34,8 @@ public abstract class Publication extends Entity {
         this.title = title;
         this.amount = 1;
         this.pubType = PubType.valueOf(type);
-
     }
+
     public Publication(String title, String author, String year, String amount, String type) {
         super();
         this.title = title;
@@ -57,13 +57,17 @@ public abstract class Publication extends Entity {
         return author;
     }
 
-    @Override
-    public String toString() {
-        return super.toString() + author + " " + title + " " + year + " " + amount;
+    public int getAmount() {
+        return amount;
     }
 
-    public void increase() {
-        this.amount += 1;
+    @Override
+    public String toString() {
+        return super.toString() + author + ", " + title + ", " + year + "y., " + amount + " copies";
+    }
+
+    public void increase(int amount) {
+        this.amount += amount;
     }
 
     public boolean decrease() {
@@ -74,11 +78,12 @@ public abstract class Publication extends Entity {
         return true;
     }
 
-//    public boolean compare(Publication p) {
-//        return  this.title.equals(p.getTitle()) &&
-//                this.author.equals(p.getAuthor()) &&
-//                this.year == p.getYear();
-//    }
+    public boolean equals(Publication p) {
+        return  this.title.equals(p.getTitle()) &&
+                this.author.equals(p.getAuthor()) &&
+                this.year.equals(p.getYear());
+    }
+
 
     public abstract Publication clone();
 

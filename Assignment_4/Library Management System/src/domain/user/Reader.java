@@ -39,6 +39,7 @@ public class Reader extends User {
     public void addPublication(Publication publication) {
         publications.add(publication);
     }
+
     public Repository<Publication> getPublications() {
         return publications;
     }

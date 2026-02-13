@@ -48,9 +48,10 @@ public class LibrarianConsole extends UserConsole {
     public void executeCommands() {
         super.executeCommands();
         if (getHelpOption()) {
-            System.out.println("register reader/librarian/publication - Register something or somebody");
+            System.out.println("register user/publication - Register something or somebody");
             System.out.println("list - show users, publications, issues of the library");
-            System.out.println("delete index/query - delete something or someone from the library");
+            System.out.println("delete index - delete something or someone from the library");
+            System.out.println("update index - update something or someone in the library");
             setHelpOption(false);
         }
         if (listOption) {
@@ -71,14 +72,14 @@ public class LibrarianConsole extends UserConsole {
         }
         if (registerOption) {
             registerOption = false;
-            if (!(query.equals("users") | query.equals("publication"))) {
+            if (!(query.equals("user") | query.equals("publication"))) {
                 System.out.println("Could not register a " + query);
                 System.out.println("Possible values are: user, publication");
                 return;
             }
             String[] info = getInfo(false, query);
             librarianService.register(info, query);
-            System.out.println("Successfully registered a new " + query);
+            System.out.println("Successfully registered a " + query);
         }
         if (updateOption) {
             updateOption = false;
@@ -116,17 +117,14 @@ public class LibrarianConsole extends UserConsole {
     }
 
     private String[] getUserInfo(boolean update) {
-        int id;
-        if (update) {
-            id = User.UserType.valueOf(query).ordinal();
-        } else {
+        if (!update) {
             System.out.println("Please choose which user you want to register");
             for (User.UserType userType : User.UserType.values()) {
                 System.out.println(userType.ordinal() + ": " + userType.name().toUpperCase());
             }
-            id = readInt(0, User.UserType.values().length - 1);
+            int id = readInt(0, User.UserType.values().length - 1);
+            query = User.UserType.values()[id].name();
         }
-        query = User.UserType.values()[id].name();
         System.out.print("Name: ");
         String name = readName(false);
         System.out.print("Last name: ");
@@ -167,21 +165,21 @@ public class LibrarianConsole extends UserConsole {
     }
 
     private String[] getBookInfo() {
-        query = "book";
+        query = Publication.PubType.book.name();
         System.out.print("Pages: ");
         String pages = String.valueOf(readInt(1, 1 << 16));
         return new String[]{pages};
     }
 
     private String[] getDiscInfo() {
-        query = "disc";
+        query = Publication.PubType.disc.name();
         System.out.print("Narrator: ");
         String narrator = readName(true);
         return new String[]{narrator};
     }
 
     private String[] getMagazineInfo() {
-        query = "magazine";
+        query = Publication.PubType.magazine.name();
         return new String[]{};
     }
 }

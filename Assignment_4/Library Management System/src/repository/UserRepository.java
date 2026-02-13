@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class UserRepository implements Repository<User> {
-    private final ArrayList<User> users = new ArrayList<>(){{
+    private final ArrayList<User> users = new ArrayList<>() {{
         add(new Reader("Marley", "Buck"));
         add(new Reader("Carley", "Robinson"));
         add(new Reader("Carley", "Robinson"));
@@ -29,22 +29,10 @@ public class UserRepository implements Repository<User> {
         users.remove(getByID(id));
     }
 
-//    @Override
-//    public boolean has(User user) {
-//        return users.contains(user);
-//    }
-
     @Override
     public boolean hasId(int id) {
         return users.stream().anyMatch(user -> user.getId() == id);
     }
-
-//    @Override
-//    public void print() {
-//        for (User user : users) {
-//            System.out.println(user);
-//        }
-//    }
 
     @Override
     public ArrayList<User> getAll() {
@@ -59,6 +47,5 @@ public class UserRepository implements Repository<User> {
     @Override
     public ArrayList<User> find(String name) {
         return (ArrayList<User>) users.stream().filter(user -> user.getFirstName().equalsIgnoreCase(name) || user.getLastName().equalsIgnoreCase(name)).collect(Collectors.toList());
-
     }
 }

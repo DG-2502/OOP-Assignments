@@ -1,21 +1,17 @@
 package console;
 
-import service.LibrarianService;
 import service.ReaderService;
 import util.Pair;
 
 public class ReaderConsole extends UserConsole {
     private final ReaderService readerService;
-//    private final LibrarianService librarianService;
     private boolean showOption = false;
     private boolean listOption = false;
     private boolean takeOption = false;
     private boolean returnOption = false;
-    private boolean nextDayOption = false;
 
-    public ReaderConsole(ReaderService readerService, LibrarianService librarianService) {
+    public ReaderConsole(ReaderService readerService) {
         this.readerService = readerService;
-//        this.librarianService = librarianService;
     }
 
     @Override
@@ -36,9 +32,6 @@ public class ReaderConsole extends UserConsole {
         if (command.equals("return")) {
             return returnOption = true;
         }
-        if (command.equals("nextday")) {
-            return nextDayOption = true;
-        }
         System.out.println("Could not find the command, type 'help' to see the list of possible commands");
         return false;
     }
@@ -50,7 +43,6 @@ public class ReaderConsole extends UserConsole {
             System.out.println("show - Show the available publications");
             System.out.println("list - Show taken publications");
             System.out.println("take index/title - Take a publication");
-            System.out.println("nextday - Move on to the next day");
             setHelpOption(false);
         }
         if (showOption) {
@@ -64,6 +56,7 @@ public class ReaderConsole extends UserConsole {
             listOption = false;
         }
         if (takeOption) {
+            takeOption = false;
             Pair response = readerService.getPublication(query, readerService.getPublicationRepository());
             System.out.println(response.value());
             if (!response.key()) {
@@ -76,9 +69,9 @@ public class ReaderConsole extends UserConsole {
                 readerService.makeIssue(myDate.getDate(), myDate.inDays(readInt(1, 28)));
                 System.out.println("Successfully taken the publication!");
             }
-            takeOption = false;
         }
         if (returnOption) {
+            returnOption = false;
             Pair response = readerService.getPublication(query, readerService.getReaderPublications());
             System.out.println(response.value());
             if (!response.key()) {
@@ -86,13 +79,7 @@ public class ReaderConsole extends UserConsole {
             }
 
             readerService.returnPublication(myDate.getDate());
-            returnOption = false;
             System.out.println("Successfully returned the publication!");
-        }
-        if (nextDayOption) {
-            myDate.nextDay();
-            System.out.println("The next day has come");
-            nextDayOption = false;
         }
     }
 }

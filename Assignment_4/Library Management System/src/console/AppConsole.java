@@ -1,11 +1,7 @@
 package console;
 
-import domain.publications.Book;
-import domain.publications.Disc;
-import domain.publications.Magazine;
-import domain.user.Librarian;
-import domain.user.Reader;
-import domain.user.User;
+import domain.publications.*;
+import domain.user.*;
 import repository.Repository;
 import service.*;
 
@@ -106,7 +102,7 @@ public class AppConsole extends BasicConsole {
         if (userConsole == null) {
             User user = usersService.getUserRepository().getByID(chosenUserID);
             if (user instanceof Reader) {
-                this.userConsole = new ReaderConsole(new ReaderService((Reader) user, publicationsService, issuesService), new LibrarianService(publicationsService, usersService, issuesService));
+                this.userConsole = new ReaderConsole(new ReaderService((Reader) user, publicationsService, issuesService));
             } else if (user instanceof Librarian) {
                 this.userConsole = new LibrarianConsole(new LibrarianService(publicationsService, usersService, issuesService));
             } else {

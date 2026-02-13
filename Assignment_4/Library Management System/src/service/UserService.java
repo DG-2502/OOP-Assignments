@@ -3,7 +3,6 @@ package service;
 import domain.publications.Publication;
 import repository.Repository;
 import util.Pair;
-
 import java.util.ArrayList;
 
 public abstract class UserService {

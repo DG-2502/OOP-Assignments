@@ -6,8 +6,8 @@ import java.util.Date;
 
 public class MyDate {
     private static MyDate myDate;
-    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-    private static Calendar calendar = Calendar.getInstance();
+    private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    private static final Calendar calendar = Calendar.getInstance();
     private Date date;
 
     private MyDate() {
@@ -21,9 +21,9 @@ public class MyDate {
         return myDate;
     }
 
-    public void nextDay() {
+    public void nextDay(int days) {
         calendar.setTime(date);
-        calendar.add(Calendar.DAY_OF_YEAR, 1);
+        calendar.add(Calendar.DAY_OF_YEAR, days);
         date = calendar.getTime();
     }
 

@@ -66,7 +66,7 @@ abstract public class User extends Entity {
     }
 
     public static User createByType(UserType type, String[] info) {
-        if (UserType.values()[0].equals(type)){
+        if (UserType.values()[0].equals(type)) {
             return Reader.create(info);
         } else if (UserType.values()[1].equals(type)) {
             return Librarian.create(info);

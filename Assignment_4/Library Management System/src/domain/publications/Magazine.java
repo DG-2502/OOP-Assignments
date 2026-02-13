@@ -1,15 +1,18 @@
 package domain.publications;
 
-public class Magazine extends Publication{
+public class Magazine extends Publication {
     public Magazine(String author, String title) {
         super(author, title, "magazine");
     }
+
     public Magazine() {
         super("Magazine", "Magazine", "magazine");
     }
+
     public Magazine(String year, String author, String title) {
         super(year, author, title, "magazine");
     }
+
     private Magazine(String year, String author, String title, int id) {
         super(year, author, title, id, "magazine");
     }
@@ -18,13 +21,18 @@ public class Magazine extends Publication{
         super(title, author, year, amount, "magazine");
     }
 
-//    @Override
-//    public boolean compare(Publication p) {
-//        if (p instanceof Magazine comp) {
-//            return super.compare(p);
-//        }
-//        return super.compare(p);
-//    }
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
+    @Override
+    public boolean equals(Publication p) {
+        if (p instanceof Magazine comp) {
+            return super.equals(p);
+        }
+        return false;
+    }
 
     @Override
     public Publication clone() {

@@ -17,6 +17,7 @@ public class Book extends Publication {
         super(year, author, title, "book");
         this.pages = pages;
     }
+
     private Book(String year, String author, String title, String pages, int id) {
         super(year, author, title, id, "book");
         this.pages = pages;
@@ -27,18 +28,22 @@ public class Book extends Publication {
         this.pages = pages;
     }
 
-    @Override
-    public String toString() {
-        return super.toString() + " " + pages;
+    public String getPages() {
+        return pages;
     }
 
-//    @Override
-//    public boolean compare(Publication p) {
-//        if (p instanceof Book comp) {
-//            return super.compare(p) || comp.getPages() == pages;
-//        }
-//        return super.compare(p);
-//    }
+    @Override
+    public String toString() {
+        return super.toString() + ", " + pages + "p.";
+    }
+
+    @Override
+    public boolean equals(Publication p) {
+        if (p instanceof Book comp) {
+            return super.equals(p) & comp.getPages().equals(pages);
+        }
+        return false;
+    }
 
     @Override
     public Publication clone() {

@@ -6,7 +6,6 @@ import domain.publications.Publication;
 import domain.user.User;
 import repository.Repository;
 import util.Pair;
-
 import java.util.Arrays;
 
 public class LibrarianService extends UserService {
@@ -28,8 +27,7 @@ public class LibrarianService extends UserService {
     public void register(String[] info, String option) {
         if (Arrays.stream(User.UserType.values()).anyMatch(type -> type.name().equals(option))) {
             usersService.add(User.createByType(User.UserType.valueOf(option), info));
-        }
-        else if (Arrays.stream(Publication.PubType.values()).anyMatch(pubType -> pubType.name().equals(option))) {
+        } else if (Arrays.stream(Publication.PubType.values()).anyMatch(pubType -> pubType.name().equals(option))) {
             publicationsService.add(Publication.createByType(Publication.PubType.valueOf(option), info));
         }
     }
@@ -65,7 +63,7 @@ public class LibrarianService extends UserService {
         if (getPublicationRepository().hasId(id)) {
             return getPublicationRepository().getByID(id);
         }
-        if (getIssueRepository().hasId(id)){
+        if (getIssueRepository().hasId(id)) {
             return getIssueRepository().getByID(id);
         }
         return null;
@@ -77,20 +75,18 @@ public class LibrarianService extends UserService {
             return new Pair(false, "Could not find anything with such an ID: " + id);
         }
         String type = entity.getType();
-        if (Arrays.stream(User.UserType.values()).anyMatch(type1 -> type1.name().equals(type))){
+        if (Arrays.stream(User.UserType.values()).anyMatch(type1 -> type1.name().equals(type))) {
             return new Pair(true, type);
-        }
-        else if (Arrays.stream(Publication.PubType.values()).anyMatch(type1 -> type1.name().equals(type))){
+        } else if (Arrays.stream(Publication.PubType.values()).anyMatch(type1 -> type1.name().equals(type))) {
             return new Pair(true, type);
         }
         return new Pair(false, "Can only update users and publications!");
     }
 
     public String getParent(String type) {
-        if (Arrays.stream(User.UserType.values()).anyMatch(type1 -> type1.name().equals(type))){
+        if (Arrays.stream(User.UserType.values()).anyMatch(type1 -> type1.name().equals(type))) {
             return "user";
-        }
-        else if (Arrays.stream(Publication.PubType.values()).anyMatch(type1 -> type1.name().equals(type))){
+        } else if (Arrays.stream(Publication.PubType.values()).anyMatch(type1 -> type1.name().equals(type))) {
             return "publication";
         }
         return null;

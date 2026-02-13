@@ -7,6 +7,7 @@ public abstract class Entity {
     public Entity() {
         this.id = ID++;
     }
+
     public Entity(int id) {
         this.id = id;
     }
@@ -21,5 +22,6 @@ public abstract class Entity {
     }
 
     public abstract void update(String[] info);
+
     public abstract String getType();
 }

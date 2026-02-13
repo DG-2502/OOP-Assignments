@@ -11,11 +11,15 @@ public class PublicationsService {
         this.publicationRepository = new PublicationRepository();
     }
 
-    public void add(Publication publication) {
-        if (publicationRepository.hasId(publication.getId())) {
-            publicationRepository.getByID(publication.getId()).increase();
+    public void add(Publication pub) {
+        if (publicationRepository.getAll().stream().anyMatch(p -> p.equals(pub))){
+            int id = publicationRepository.getAll().stream().filter(p -> p.equals(pub)).findFirst().get().getId();
+            publicationRepository.getByID(id).increase(pub.getAmount());
+        }
+        else if (publicationRepository.hasId(pub.getId())) {
+            publicationRepository.getByID(pub.getId()).increase(1);
         } else {
-            publicationRepository.add(publication);
+            publicationRepository.add(pub);
         }
     }
 
