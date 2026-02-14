@@ -6,27 +6,10 @@
       <change beforePath="$PROJECT_DIR$/../../Assignment_3/Task_7/src/factory/ProgrammingCourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Assignment_3/Task_7/src/factory/ProgrammingCourse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/console/AppConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/console/AppConsole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/console/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/console/Console.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/console/LibrarianConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/console/LibrarianConsole.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/console/ReaderConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/console/ReaderConsole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/console/UserConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/console/UserConsole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/issue/Issue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/issue/Issue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/publications/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/publications/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/publications/Disc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/publications/Disc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/publications/Magazine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/publications/Magazine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/publications/Publication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/publications/Publication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/user/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/user/Reader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repository/IssueRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/IssueRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repository/PublicationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/PublicationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repository/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/LibrarianService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/LibrarianService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/PublicationsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/PublicationsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/ReaderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/ReaderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/MyDate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/MyDate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/UsersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/UsersService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +100,11 @@
       <workItem from="1770905764032" duration="18004000" />
       <workItem from="1770958691430" duration="766000" />
       <workItem from="1770972796927" duration="1257000" />
-      <workItem from="1770985595825" duration="6941000" />
+      <workItem from="1770985595825" duration="7079000" />
+      <workItem from="1770995229812" duration="251000" />
+      <workItem from="1770999837104" duration="104000" />
+      <workItem from="1771000175157" duration="11040000" />
+      <workItem from="1771037939630" duration="5305000" />
     </task>
     <servers />
   </component>

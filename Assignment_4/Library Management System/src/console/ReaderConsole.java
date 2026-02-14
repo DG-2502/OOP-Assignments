@@ -1,5 +1,7 @@
 package console;
 
+import domain.publications.Publication;
+import repository.Repository;
 import service.ReaderService;
 import util.Pair;
 
@@ -27,10 +29,10 @@ public class ReaderConsole extends UserConsole {
             return listOption = true;
         }
         if (command.equals("take")) {
-            return takeOption = true;
+            return takeOption = getPublication(query, readerService.getPublicationRepository());
         }
         if (command.equals("return")) {
-            return returnOption = true;
+            return returnOption = getPublication(query, readerService.getReaderPublications());
         }
         System.out.println("Could not find the command, type 'help' to see the list of possible commands");
         return false;
@@ -57,13 +59,7 @@ public class ReaderConsole extends UserConsole {
         }
         if (takeOption) {
             takeOption = false;
-            Pair response = readerService.getPublication(query, readerService.getPublicationRepository());
-            System.out.println(response.value());
-            if (!response.key()) {
-                return;
-            }
-
-            response = readerService.takePublication();
+            Pair response = readerService.takePublication();
             System.out.println(response.value());
             if (response.key()) {
                 readerService.makeIssue(myDate.getDate(), myDate.inDays(readInt(1, 28)));
@@ -72,14 +68,14 @@ public class ReaderConsole extends UserConsole {
         }
         if (returnOption) {
             returnOption = false;
-            Pair response = readerService.getPublication(query, readerService.getReaderPublications());
-            System.out.println(response.value());
-            if (!response.key()) {
-                return;
-            }
-
             readerService.returnPublication(myDate.getDate());
             System.out.println("Successfully returned the publication!");
         }
+    }
+
+    public boolean getPublication(String query, Repository<Publication> publicationRepository) {
+        Pair response = readerService.getPublication(query, publicationRepository);
+        System.out.println(response.value());
+        return response.key();
     }
 }

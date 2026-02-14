@@ -24,12 +24,15 @@ public class LibrarianService extends UserService {
         return issuesService.getIssueRepository();
     }
 
-    public void register(String[] info, String option) {
+    public boolean register(String[] info, String option) {
         if (Arrays.stream(User.UserType.values()).anyMatch(type -> type.name().equals(option))) {
             usersService.add(User.createByType(User.UserType.valueOf(option), info));
+            return true;
         } else if (Arrays.stream(Publication.PubType.values()).anyMatch(pubType -> pubType.name().equals(option))) {
             publicationsService.add(Publication.createByType(Publication.PubType.valueOf(option), info));
+            return true;
         }
+        return false;
     }
 
     public void update(String[] info, int id) {

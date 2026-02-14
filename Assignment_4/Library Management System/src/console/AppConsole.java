@@ -4,6 +4,7 @@ import domain.publications.*;
 import domain.user.*;
 import repository.Repository;
 import service.*;
+import util.Pair;
 
 import java.util.ArrayList;
 
@@ -70,32 +71,10 @@ public class AppConsole extends BasicConsole {
     }
 
     private boolean getUser(String name) {
-        Repository<User> userRepository = usersService.getUserRepository();
-        try {
-            int index = Integer.parseInt(name);
-            if (userRepository.hasId(index)) {
-                chosenUserID = index;
-                System.out.println("Found one user: " + userRepository.getByID(index));
-                return true;
-            }
-            System.out.println("Could not find user with ID: " + index);
-            return false;
-        } catch (NumberFormatException e) {
-            ArrayList<User> users = new ArrayList<>(userRepository.find(name));
-            if (users.isEmpty()) {
-                System.out.println("Could not find a user with such a name: " + name);
-                return false;
-            } else if (users.size() != 1) {
-                System.out.println("Found several users with such a name: " + name);
-                for (User user : users) {
-                    System.out.println(user);
-                }
-                return false;
-            }
-            chosenUserID = users.getFirst().getId();
-            System.out.println("Found one user with such a name: " + users.getFirst());
-            return true;
-        }
+        Pair pair = usersService.getUser(name);
+        System.out.println(pair.value());
+        chosenUserID = usersService.getChosenUserID();
+        return pair.key();
     }
 
     private void login() {

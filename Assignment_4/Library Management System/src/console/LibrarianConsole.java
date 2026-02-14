@@ -14,6 +14,7 @@ public class LibrarianConsole extends UserConsole {
     private boolean registerOption = false;
     private boolean deleteOption = false;
     private boolean updateOption = false;
+    private int id;
 
     public LibrarianConsole(LibrarianService librarianService) {
         this.librarianService = librarianService;
@@ -38,7 +39,7 @@ public class LibrarianConsole extends UserConsole {
         }
         if (command.equals("update")) {
             query = option;
-            return updateOption = true;
+            return updateOption = getTypeByID();
         }
         System.out.println("Could not find the command, type 'help' to see the list of possible commands");
         return false;
@@ -72,30 +73,13 @@ public class LibrarianConsole extends UserConsole {
         }
         if (registerOption) {
             registerOption = false;
-            if (!(query.equals("user") | query.equals("publication"))) {
-                System.out.println("Could not register a " + query);
-                System.out.println("Possible values are: user, publication");
-                return;
-            }
             String[] info = getInfo(false, query);
-            librarianService.register(info, query);
-            System.out.println("Successfully registered a " + query);
+            if (librarianService.register(info, query)) {
+                System.out.println("Successfully registered a " + query);
+            }
         }
         if (updateOption) {
             updateOption = false;
-            int id = 0;
-            try {
-                id = Integer.parseInt(query);
-            } catch (NumberFormatException e) {
-                System.out.println("Update command only works with indexes!");
-                return;
-            }
-            Pair pair = librarianService.getTypeById(id);
-            query = pair.value();
-            if (!pair.key()) {
-                System.out.println(query);
-                return;
-            }
             String[] info = getInfo(true, librarianService.getParent(query));
             librarianService.update(info, id);
             System.out.println("Successfully updated a " + query);
@@ -113,6 +97,8 @@ public class LibrarianConsole extends UserConsole {
         } else if (query.equals("publication")) {
             return getPublicationInfo(update);
         }
+        System.out.println("Could not register a " + query);
+        System.out.println("Possible values are: user, publication");
         return null;
     }
 
@@ -181,5 +167,20 @@ public class LibrarianConsole extends UserConsole {
     private String[] getMagazineInfo() {
         query = Publication.PubType.magazine.name();
         return new String[]{};
+    }
+
+    private boolean getTypeByID() {
+        try {
+            id = Integer.parseInt(query);
+        } catch (NumberFormatException e) {
+            System.out.println("Update command only works with indexes!");
+            return false;
+        }
+        Pair pair = librarianService.getTypeById(id);
+        query = pair.value();
+        if (!pair.key()) {
+            System.out.println(query);
+        }
+        return pair.key();
     }
 }
